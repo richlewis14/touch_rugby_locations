@@ -1,0 +1,16 @@
+{
+  "name": "touch_locations",
+  "version": "1.0.0",
+  "description": "Interactive map with locations of touch teams in wales",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Richard Lewis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "node-sass-middleware": "^0.11.0",
+    "snazzy-info-window": "^1.0.0"
+  }
+}
