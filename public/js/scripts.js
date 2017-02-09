@@ -89,6 +89,13 @@ $(function() {
         title: 'Guerillas Touch Rugby'
     });
 
+    var stirlingsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#6A0F5A'),
+        position: new google.maps.LatLng(56.128692, -3.931860),
+        title: 'Stirling Storm Touch Rugby'
+    });
+
     // Set up handle bars
     var template = Handlebars.compile($('#marker-content-template').html());
 
@@ -163,6 +170,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             guerillasInfoWindow.close();
+        }, 300);
+    };
+
+    var closeStirlings = function() {
+        $(stirlingsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            stirlingsInfoWindow.close();
         }, 300);
     };
 
@@ -592,6 +607,56 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeGuerillas();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Stirlings marker
+    var stirlingsInfoWindow = new SnazzyInfoWindow({
+        marker: stirlingsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Stirling Storm Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/stirlings_banner.jpg',
+            body: "<p>We have been playing Touch in Stirling since the summer of 2001 and are always on the lookout for new players, both male and female, of all ages.</p>" +
+                  "<p>It doesn’t matter whether you’ve played Touch before or what level of fitness you have, everybody is welcome. We offer structured training from our qualified coaches and referees. You’ll be made to feel at home and you’ll find that Touch is a really easy sport to learn.</p>" +
+                  "<p>Our club works hard to ensure everyone is catered for, from those looking for a social run out through to those wanting to compete at top level in club tournaments and on to Regional and National representation.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/stirlingstorm/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/stirlingtouch' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeStirlings);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeStirlings();
                     return false;
                 }
                 return true;
