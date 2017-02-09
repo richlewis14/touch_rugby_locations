@@ -16,7 +16,7 @@ $(function() {
 
     // Create the map
     var map = new google.maps.Map($('.map-canvas')[0], {
-        zoom: 8,
+        zoom: 6,
         //styles: mapStyle,
         center: new google.maps.LatLng(52.4016798, -5.2837261)
     });
