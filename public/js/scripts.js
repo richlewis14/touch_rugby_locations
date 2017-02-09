@@ -16,7 +16,7 @@ $(function() {
 
     // Create the map
     var map = new google.maps.Map($('.map-canvas')[0], {
-        zoom: 6,
+        zoom: 5,
         //styles: mapStyle,
         center: new google.maps.LatLng(52.4016798, -5.2837261)
     });
@@ -24,6 +24,7 @@ $(function() {
     // *********************
     // Markers
     // *********************
+    // Wales
     var vandalsMarker = new google.maps.Marker({
         map: map,
         icon: createIcon('#ff61b4'),
@@ -52,6 +53,13 @@ $(function() {
         title: 'Phoenix Touch Rugby'
     });
 
+    var kiwisMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000000'),
+        position: new google.maps.LatLng(51.517129, -3.240999),
+        title: 'Kiwi Dragons Touch Rugby'
+    });
+
     var gowerDragonsMarker = new google.maps.Marker({
         map: map,
         icon: createIcon('#FF0000'),
@@ -71,6 +79,14 @@ $(function() {
         icon: createIcon('#5a5a5a'),
         position: new google.maps.LatLng(51.854403, -4.315787),
         title: 'Gower Dragons Touch Rugby'
+    });
+
+    // Scotland
+    var guerillasMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#FF0000'),
+        position: new google.maps.LatLng(57.139238, -2.178131),
+        title: 'Guerillas Touch Rugby'
     });
 
     // Set up handle bars
@@ -109,6 +125,14 @@ $(function() {
         }, 300);
     };
 
+    var closeKiwis = function() {
+        $(kiwisInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            kiwisInfoWindow.close();
+        }, 300);
+    };
+
     var closeGower = function() {
         $(gowerInfoWindow.getWrapper()).removeClass('active');
         setTimeout(function() {
@@ -130,6 +154,15 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             cobrasInfoWindow.close();
+        }, 300);
+    };
+
+    // Scotland
+    var closeGuerillas = function() {
+        $(guerillasInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            guerillasInfoWindow.close();
         }, 300);
     };
 
@@ -267,6 +300,53 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeCoyotes();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Kiwis marker
+    var kiwisInfoWindow = new SnazzyInfoWindow({
+        marker: kiwisMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Kiwi Dragons Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/kiwi_banner.jpeg',
+            body: '<p>Est. 1989 - Wales Most Successful Touch Team.</p>' +
+                  '<p>Rebuilding for 2017 - New players welcome. Our ethos, our success, indeed our culture is unique</p>' +
+                  "<p>Twitter: <a href='https://twitter.com/kiwidragons1989' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeKiwis);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeKiwis();
                     return false;
                 }
                 return true;
@@ -463,6 +543,55 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeCobras();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Scotland
+    // Add a Snazzy Info Window to the Guerillas marker
+    var guerillasInfoWindow = new SnazzyInfoWindow({
+        marker: guerillasMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Guerillas Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/guerillas_banner.jpg',
+            body: "<p>One of Scotland's largest & most successful touch clubs offering opportunities to play for players at all levels from complete beginner to internationals.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/GuerillasTRC/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/guerilla_iain' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeGuerillas);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeGuerillas();
                     return false;
                 }
                 return true;
