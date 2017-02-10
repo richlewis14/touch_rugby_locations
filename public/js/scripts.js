@@ -131,6 +131,13 @@ $(function() {
         title: 'Hoodlums Touch'
     });
 
+    var leopardsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000000'),
+        position: new google.maps.LatLng(57.174909, -2.136079),
+        title: 'Leopards Touch'
+    });
+
 
     // England
     var northamptonCoysMarker = new google.maps.Marker({
@@ -276,6 +283,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             hoodlumsInfoWindow.close();
+        }, 300);
+    };
+
+    var closeLeopards = function() {
+        $(leopardsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            leopardsInfoWindow.close();
         }, 300);
     };
 
@@ -1029,6 +1044,54 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeHoodlums();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Leopards marker
+    var leopardsInfoWindow = new SnazzyInfoWindow({
+        marker: leopardsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Leopards Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/leopards_banner.jpg',
+            body: "<p>We are a mixed club and one of the leading Touch Rugby clubs in Aberdeen and Scotland.</p>" +
+                  "<p>We are all inclusive and cater for all abilities from complete beginner through to expert.</p>" +
+                  "<p>If you're interested in taking up Touch or would like to know more about the club, then please come along or contact the club for more details.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/LeopardsTouch/' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeLeopards);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeLeopards();
                     return false;
                 }
                 return true;
