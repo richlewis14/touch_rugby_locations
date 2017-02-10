@@ -145,6 +145,13 @@ $(function() {
         title: 'Glasgow Lions Touch'
     });
 
+    var glasgowCenturionsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#525C65'),
+        position: new google.maps.LatLng(55.876775, -4.333513),
+        title: 'Glasgow Centurions Touch'
+    });
+
 
     // England
     var northamptonCoysMarker = new google.maps.Marker({
@@ -306,6 +313,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             glasgowLionsInfoWindow.close();
+        }, 300);
+    };
+
+    var closeGlasgowCenturions = function() {
+        $(glasgowCenturionsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            glasgowCenturionsInfoWindow.close();
         }, 300);
     };
 
@@ -799,7 +814,8 @@ $(function() {
             bgImg: '/images/guerillas_banner.jpg',
             body: "<p>One of Scotland's largest & most successful touch clubs offering opportunities to play for players at all levels from complete beginner to internationals.</p>" +
                   "<p>Facebook: <a href='https://www.facebook.com/GuerillasTRC/' target='_blank'>Visit</a></p>" +
-                  "<p>Twitter: <a href='https://twitter.com/guerilla_iain' target='_blank'>Visit</a></p>"
+                  "<p>Twitter: <a href='https://twitter.com/guerilla_iain' target='_blank'>Visit</a></p>" +
+                  "<p>Email: guerillastouchrugby@gmail.com</p>"
                   
         }),
         callbacks: {
@@ -1167,6 +1183,56 @@ $(function() {
             }
         }
     });
+
+    // Add a Snazzy Info Window to the Glasgow Centurions marker
+    var glasgowCenturionsInfoWindow = new SnazzyInfoWindow({
+        marker: glasgowCenturionsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Glasgow Centurions Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/glasgow_centurions_banner.jpg',
+            body: "<p>Glasgow Centurions Touch Club are a new Glasgow social mixed, men’s and women’s, touch rugby club established in September 2014.</p>" +
+                  "<p>We are always on the lookout for new members to join our ranks regardless of age, sex or experience!</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/GlasgowLionsTRC' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/centuriontouch' target='_blank'>Visit</a></p>" +
+                  "<p>Website: <a href='http://www.centurionstouch.co.uk/' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeGlasgowCenturions);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeGlasgowCenturions();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
 
     // England
     // Add a Snazzy Info Window to the Northampton Coys marker
