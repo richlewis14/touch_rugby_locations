@@ -96,6 +96,14 @@ $(function() {
         title: 'Stirling Storm Touch Rugby'
     });
 
+    // England
+    var northamptonCoysMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#085a7f'),
+        position: new google.maps.LatLng(52.228787, -0.864090),
+        title: 'Northampton COYS Touch Rugby'
+    });
+
     // Set up handle bars
     var template = Handlebars.compile($('#marker-content-template').html());
 
@@ -178,6 +186,15 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             stirlingsInfoWindow.close();
+        }, 300);
+    };
+
+    // England
+    var closeNorthamptonCoys = function() {
+        $(northamptonCoysInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            northamptonCoysInfoWindow.close();
         }, 300);
     };
 
@@ -669,4 +686,55 @@ $(function() {
             }
         }
     });
+
+    // England
+    // Add a Snazzy Info Window to the Northampton Coys marker
+    var northamptonCoysInfoWindow = new SnazzyInfoWindow({
+        marker: northamptonCoysMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Northampton Coys Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/northampton_coys_banner.jpg',
+            body: "<p>Playing at CTS, DTS and social level, across the country.</p>" +
+                  "<p>The biggest Touch club in the East Midlands, always looking for players of all abilities, from beginners to pros.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/COYSTouchRugby/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/coystouchrugby' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeNorthamptonCoys);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeNorthamptonCoys();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
 });
