@@ -138,6 +138,13 @@ $(function() {
         title: 'Leopards Touch'
     });
 
+    var glasgowLionsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000000'),
+        position: new google.maps.LatLng(55.848763, -4.235071),
+        title: 'Glasgow Lions Touch'
+    });
+
 
     // England
     var northamptonCoysMarker = new google.maps.Marker({
@@ -291,6 +298,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             leopardsInfoWindow.close();
+        }, 300);
+    };
+
+    var closeGlasgowLions = function() {
+        $(glasgowLionsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            glasgowLionsInfoWindow.close();
         }, 300);
     };
 
@@ -1092,6 +1107,54 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeLeopards();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Glasgow Lions marker
+    var glasgowLionsInfoWindow = new SnazzyInfoWindow({
+        marker: glasgowLionsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Glasgow Lions Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/glasgow_lions_banner.jpg',
+            body: "<p>Glasgow Lions Touch Rugby Club. 'For all' ages and abilities. Come along and join us women and men of Glasgow!</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/GlasgowLionsTRC' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/glasgowlions' target='_blank'>Visit</a></p>" +
+                  "<p>Website: <a href='http://www.glasgowlions.com/' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeGlasgowLions);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeGlasgowLions();
                     return false;
                 }
                 return true;
