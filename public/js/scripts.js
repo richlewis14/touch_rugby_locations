@@ -96,6 +96,13 @@ $(function() {
         title: 'Stirling Storm Touch Rugby'
     });
 
+    var galaxyScotlandMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000000'),
+        position: new google.maps.LatLng(55.973691, -3.254358),
+        title: 'Galaxy Scotland Touch Rugby'
+    });
+
     // England
     var northamptonCoysMarker = new google.maps.Marker({
         map: map,
@@ -193,6 +200,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             stirlingsInfoWindow.close();
+        }, 300);
+    };
+
+    var closeGalaxyScotland = function() {
+        $(galaxyScotlandInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            galaxyScotlandInfoWindow.close();
         }, 300);
     };
 
@@ -689,6 +704,57 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeStirlings();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Galaxy Scotland marker
+    var galaxyScotlandInfoWindow = new SnazzyInfoWindow({
+        marker: galaxyScotlandMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Galaxy Scotland Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/galaxy_scotland_banner.jpg',
+            body: "<p>Galaxy Scotland aims to promote free flowing, high pace touch based on the New Zealand style of from from where the club was born.</p>" +
+                  "<p>The club plays in various leagues in Edinburgh, ranging from beginners to elite. It's primary focus is the Monday night Touch Superleague where is has a proud history of titles.</p>" +
+                  "<p>It's a friendly and welcoming club, playing an exciting brand of Touch!</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/galaxyscotland/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/GalaxyEdinburgh' target='_blank'>Visit</a></p>" +
+                  "<p>Website: <a href='http://www.galaxytouch.co.uk/' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeGalaxyScotland);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeGalaxyScotland();
                     return false;
                 }
                 return true;
