@@ -152,6 +152,13 @@ $(function() {
         title: 'Glasgow Centurions Touch'
     });
 
+    var glasgowBlueJaysMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#ADD8E6'),
+        position: new google.maps.LatLng(55.876742, -4.336243),
+        title: 'Glasgow Blue Jays Touch'
+    });
+
 
     // England
     var northamptonCoysMarker = new google.maps.Marker({
@@ -321,6 +328,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             glasgowCenturionsInfoWindow.close();
+        }, 300);
+    };
+
+    var closeGlasgowBlueJays = function() {
+        $(glasgowBlueJaysInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            glasgowBlueJaysInfoWindow.close();
         }, 300);
     };
 
@@ -1220,6 +1235,54 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeGlasgowCenturions();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Glasgow Blue Jays marker
+    var glasgowBlueJaysInfoWindow = new SnazzyInfoWindow({
+        marker: glasgowBlueJaysMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Glasgow Blue Jays Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/glasgow_blue_jays_banner.jpg',
+            body: "<p>A club started by a group of friends in 2011 and has continued to grow over the past couple of years.</p>" +
+                  "<p>We play in the Glasgow league, STS tournaments and any other tournaments that take our fancy.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/groups/399338000096978/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/glasgowbluejays' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeGlasgowBlueJays);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeGlasgowBlueJays();
                     return false;
                 }
                 return true;
