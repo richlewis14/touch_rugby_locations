@@ -104,6 +104,13 @@ $(function() {
         title: 'Northampton COYS Touch Rugby'
     });
 
+    var mawsleyMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000080'),
+        position: new google.maps.LatLng(52.376484, -0.810652),
+        title: 'Mawsley Touch Rugby'
+    });
+
     // Set up handle bars
     var template = Handlebars.compile($('#marker-content-template').html());
 
@@ -195,6 +202,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             northamptonCoysInfoWindow.close();
+        }, 300);
+    };
+
+    var closeMawsley = function() {
+        $(mawsleyInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            mawsleyInfoWindow.close();
         }, 300);
     };
 
@@ -736,5 +751,56 @@ $(function() {
             }
         }
     });
+
+    // Add a Snazzy Info Window to the Mawsley marker
+    var mawsleyInfoWindow = new SnazzyInfoWindow({
+        marker: mawsleyMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Mawsley Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/mawsley_banner.jpg',
+            body: "<p>Mawsley Touch Rugby Club, formed in 2012, is a mixed, successful touch rugby club based in Northamptonshire. Our emphasis is on fun and fitness although we do play competitive games in the Summer months.</p>" +
+                  "<p>We are always keen to hear from new players looking to join us, whatever your background or experience level. You DO NOT need any experience to join us.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/groups/205733109557441/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/coystouchrugby' target='_blank'>Visit</a></p>" +
+                  "<p>Website: <a href='http://www.mawsleyvillage.co.uk/mawsley-touch-rugby' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeMawsley);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeMawsley();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
 
 });
