@@ -103,6 +103,13 @@ $(function() {
         title: 'Galaxy Scotland Touch Rugby'
     });
 
+    var buffalosMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#ff61b4'),
+        position: new google.maps.LatLng(55.94216, -3.198139),
+        title: 'Buffalos Touch Rugby'
+    });
+
     // England
     var northamptonCoysMarker = new google.maps.Marker({
         map: map,
@@ -215,6 +222,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             galaxyScotlandInfoWindow.close();
+        }, 300);
+    };
+
+    var closeBuffalos = function() {
+        $(buffalosInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            buffalosInfoWindow.close();
         }, 300);
     };
 
@@ -770,6 +785,55 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeGalaxyScotland();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Buffalos marker
+    var buffalosInfoWindow = new SnazzyInfoWindow({
+        marker: buffalosMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Buffalos Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/buffalos_banner.jpg',
+            body: "<p>The Buffalos are a mixed touch rugby team based in Edinburgh. We are a group of friends who enjoy a good game of touch as well as a good night out together.</p>" +
+                  "<p>Come and join us for a runabout on the Meadows (all levels of touch experience are welcome)!</p>" +
+                  "<p>Facebook: <a href=' https://www.facebook.com/buffalostouchrugby/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/BuffalosTouch' target='_blank'>Visit</a></p>" +
+                  "<p>Instagram: <a href='https://www.instagram.com/BuffalosTouch/'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeBuffalos);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeBuffalos();
                     return false;
                 }
                 return true;
