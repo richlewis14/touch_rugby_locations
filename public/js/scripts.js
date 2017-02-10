@@ -117,6 +117,14 @@ $(function() {
         title: 'Buffalos Touch Rugby'
     });
 
+    var sixPackMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#4285F4'),
+        position: new google.maps.LatLng(55.964924, -3.222354),
+        title: 'Six Pack Touch'
+    });
+
+
     // England
     var northamptonCoysMarker = new google.maps.Marker({
         map: map,
@@ -245,6 +253,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             buffalosInfoWindow.close();
+        }, 300);
+    };
+
+    var closeSixPack = function() {
+        $(sixPackInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            sixPackInfoWindow.close();
         }, 300);
     };
 
@@ -887,7 +903,7 @@ $(function() {
             bgImg: '/images/buffalos_banner.jpg',
             body: "<p>The Buffalos are a friendly club who enjoy a good game of touch as much as the social aspect of the sport.</p>" +
                   "<p>We play in elite, intermediate and social leagues and tournaments, catering for our players who range from internationals to beginners. If you fancy a run join the herd!</p>" +
-                  "<p>Facebook: <a href=' https://www.facebook.com/buffalostouchrugby/' target='_blank'>Visit</a></p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/buffalostouchrugby/' target='_blank'>Visit</a></p>" +
                   "<p>Twitter: <a href='https://twitter.com/BuffalosTouch' target='_blank'>Visit</a></p>" +
                   "<p>Instagram: <a href='https://www.instagram.com/BuffalosTouch/'>Visit</a></p>"
         }),
@@ -903,6 +919,54 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeBuffalos();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Buffalos marker
+    var sixPackInfoWindow = new SnazzyInfoWindow({
+        marker: sixPackMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Six Pack Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/six_pack_banner.jpg',
+            body: "<p>Six Pack are an Edinburgh based Touch Rugby Club playing socially and competitively at local, regional and national levels.</p>" +
+                  "<p>Players of all abilities are always welcome.</p>" +
+                  "<p>Many of our members are playing their first season this year and several of our members represent Scotland across several grades.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/Six-Pack-Touch-Rugby-Edinburgh-191653284196382/' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeSixPack);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeSixPack();
                     return false;
                 }
                 return true;
