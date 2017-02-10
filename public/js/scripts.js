@@ -124,6 +124,13 @@ $(function() {
         title: 'Six Pack Touch'
     });
 
+    var hoodlumsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#ff61b4'),
+        position: new google.maps.LatLng(57.162747, -2.094108),
+        title: 'Hoodlums Touch'
+    });
+
 
     // England
     var northamptonCoysMarker = new google.maps.Marker({
@@ -261,6 +268,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             sixPackInfoWindow.close();
+        }, 300);
+    };
+
+    var closeHoodlums = function() {
+        $(hoodlumsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            hoodlumsInfoWindow.close();
         }, 300);
     };
 
@@ -932,7 +947,7 @@ $(function() {
         }
     });
 
-    // Add a Snazzy Info Window to the Buffalos marker
+    // Add a Snazzy Info Window to the Six Pack marker
     var sixPackInfoWindow = new SnazzyInfoWindow({
         marker: sixPackMarker,
         wrapperClass: 'custom-window',
@@ -967,6 +982,53 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeSixPack();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Hoodlums marker
+    var hoodlumsInfoWindow = new SnazzyInfoWindow({
+        marker: hoodlumsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Hoodlums Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/hoodlums_banner.jpg',
+            body: "<p>Hoodlums is an Aberdeen-based touch rugby club. If you are interested in finding out more about touch or joining the club please send us a message.</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/HoodlumsTouch/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/hoodlumstouch' target='_blank'>Visit</a></p>"
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeHoodlums);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeHoodlums();
                     return false;
                 }
                 return true;
