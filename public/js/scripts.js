@@ -81,6 +81,13 @@ $(function() {
         title: 'Gower Dragons Touch Rugby'
     });
 
+    var plasmawrStagsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#000000'),
+        position: new google.maps.LatLng(51.497313, -3.246692),
+        title: 'Plasmawr Stags Touch'
+    });
+
     // Scotland
     var guerillasMarker = new google.maps.Marker({
         map: map,
@@ -197,6 +204,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             cobrasInfoWindow.close();
+        }, 300);
+    };
+
+    var closePlasmawrStags = function() {
+        $(plasmawrStagsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            plasmawrStagsInfoWindow.close();
         }, 300);
     };
 
@@ -326,9 +341,16 @@ $(function() {
             title: 'Cardiff Raptors Touch',
             // subtitle: 'Touch Rugby For All Abilities',
             bgImg: '/images/raptors_banner.jpeg',
-            body: "<p>Cardiff based Touch team. We have a Men's, Women's & Mixed team who compete in leagues & tournaments in and around South Wales. New players always welcome!.</p>" +
+            body: "<p>The Raptors have two Mixed teams, a Women's, Men's & Junior team.</p>" +
+                  "<p>New players are always welcome, regardless of ability/experience.</p>" +
+                  "<p>We are currently the most successful team in Wales!</p>" +
+                  "<p>2016 Season</p>" +
+                  "<ul><li>Wales Touch Series winners</li><li>Touch Rugby Wales Mixed winners</li><li>Touch Rugby Wales Men's winners</li><li>Manchester Fully Charged Events winners</li><li>Nelson Charity Tournament winners</li></ul>" +
+                  "<p>2017 season so far</p>" +
+                  "<ul><li>Maidenhead Touch Autumn Elite Series winners</li></ul>" +
                   "<p>Website: <a href='http://www.pitchero.com/clubs/cardiffraptorstouch' target='_blank'>Visit</a></p>" +
-                  "<p>Facebook: <a href='https://www.facebook.com/CardiffRaptorsTouch/' target='_blank'>Visit</p>"
+                  "<p>Facebook: <a href='https://www.facebook.com/CardiffRaptorsTouch/' target='_blank'>Visit</a></p>" +
+                  "<p>Email: cardiffraptors@hotmail.co.uk</p>"
         }),
         callbacks: {
             open: function() {
@@ -635,6 +657,53 @@ $(function() {
             beforeClose: function() {
                 if (!closeDelayed) {
                     closeCobras();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
+    // Add a Snazzy Info Window to the Plasmawr Stags marker
+    var plasmawrStagsInfoWindow = new SnazzyInfoWindow({
+        marker: plasmawrStagsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Plasmawr Stags Touch',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/plasmawr_stags_banner.jpg',
+            body: '<p>Touch Rugby team made up of former Ysgol Plasmawr pupils. Based in Cardiff, Wales.</p>' +
+                  "<p>Twitter: <a href='https://twitter.com/plasmawrstags' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closePlasmawrStags);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closePlasmawrStags();
                     return false;
                 }
                 return true;
