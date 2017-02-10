@@ -118,6 +118,13 @@ $(function() {
         title: 'Mawsley Touch Rugby'
     });
 
+    var chesterCheetahsMarker = new google.maps.Marker({
+        map: map,
+        icon: createIcon('#cd0802'),
+        position: new google.maps.LatLng(53.197489, -2.842937),
+        title: 'Chester Cheetahs Touch Rugby'
+    });
+
     // Set up handle bars
     var template = Handlebars.compile($('#marker-content-template').html());
 
@@ -225,6 +232,14 @@ $(function() {
         setTimeout(function() {
             closeDelayed = true;
             mawsleyInfoWindow.close();
+        }, 300);
+    };
+
+    var closeChesterCheetahs = function() {
+        $(chesterCheetahsInfoWindow.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            chesterCheetahsInfoWindow.close();
         }, 300);
     };
 
@@ -867,6 +882,56 @@ $(function() {
             }
         }
     });
+
+    // Add a Snazzy Info Window to the Chester Cheetahs marker
+    var chesterCheetahsInfoWindow = new SnazzyInfoWindow({
+        marker: chesterCheetahsMarker,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: 'Chester Cheetahs Touch Rugby',
+            // subtitle: 'Touch Rugby For All Abilities',
+            bgImg: '/images/chester_cheetahs_banner.jpg',
+            body: "<p>Come and touch a live Cheetah every Thursday 18.00pm at Chester RUFC. A mixed sport for all ages, keeping fit and playing touch rugby. GOOOOOooooo Cheetahs</p>" +
+                  "<p>Facebook: <a href='https://www.facebook.com/cheetahschester/' target='_blank'>Visit</a></p>" +
+                  "<p>Twitter: <a href='https://twitter.com/Ches_Cheetahs' target='_blank'>Visit</a></p>" +
+                  "<p>Website: <a href='http://www.pitchero.com/clubs/chesterrufc/teams/138311' target='_blank'>Visit</a></p>"
+                  
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeChesterCheetahs);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeChesterCheetahs();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    });
+
 
 
 });
