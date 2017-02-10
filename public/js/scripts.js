@@ -816,8 +816,8 @@ $(function() {
             title: 'Buffalos Touch',
             // subtitle: 'Touch Rugby For All Abilities',
             bgImg: '/images/buffalos_banner.jpg',
-            body: "<p>The Buffalos are a mixed touch rugby team based in Edinburgh. We are a group of friends who enjoy a good game of touch as well as a good night out together.</p>" +
-                  "<p>Come and join us for a runabout on the Meadows (all levels of touch experience are welcome)!</p>" +
+            body: "<p>The Buffalos are a friendly club who enjoy a good game of touch as much as the social aspect of the sport.</p>" +
+                  "<p>We play in elite, intermediate and social leagues and tournaments, catering for our players who range from internationals to beginners. If you fancy a run join the herd!</p>" +
                   "<p>Facebook: <a href=' https://www.facebook.com/buffalostouchrugby/' target='_blank'>Visit</a></p>" +
                   "<p>Twitter: <a href='https://twitter.com/BuffalosTouch' target='_blank'>Visit</a></p>" +
                   "<p>Instagram: <a href='https://www.instagram.com/BuffalosTouch/'>Visit</a></p>"
