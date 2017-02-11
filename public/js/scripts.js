@@ -156,6 +156,12 @@ $(function() {
                                                    "<p>Facebook: <a href='https://www.facebook.com/cheetahschester/' target='_blank'>Visit</a></p>" +
                                                    "<p>Twitter: <a href='https://twitter.com/Ches_Cheetahs' target='_blank'>Visit</a></p>" +
                                                    "<p>Website: <a href='http://www.pitchero.com/clubs/chesterrufc/teams/138311' target='_blank'>Visit</a></p>"
+                                          },
+                      "Horsham Tigers": { "bio":   "<p>We are an established touch rugby team who offer a place where people can exercise and play hard in a fun and social setting with like-minded people.</p>" +
+                                                   "<p>We welcome everyone, regardless of how often you can make it down. Our members are varied in their skill / fitness /age and gender, and we always work with your individual abilities & needs, excluding nobody.</p>" +
+                                                   "<p>Facebook: <a href='https://www.facebook.com/HorshamRugbyClub/' target='_blank'>Visit</a></p>" +
+                                                   "<p>Twitter: <a href='https://twitter.com/horshamtouch' target='_blank'>Visit</a></p>" +
+                                                   "<p>Website: <a href='http://www.horshamrufc.com/teams/71878' target='_blank'>Visit</a></p>"
                                           }
 
                 }
@@ -194,7 +200,8 @@ $(function() {
                     { name: 'Meerkats', lat: 55.963502, long: -3.217582, title: 'Meerkats Touch', icon_color: '#D3D3D3', image: 'meerkats_banner.jpg' },
                     { name: 'Northampton COYS', lat: 52.228787, long: -0.864090, title: 'Northampton COYS Touch', icon_color: '#085a7f', image: 'northampton_coys_banner.jpg' },
                     { name: 'Mawsley', lat: 52.376484, long: -0.810652, title: 'Mawsley Touch', icon_color: '#000080', image: 'mawsley_banner.jpg' },
-                    { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' }
+                    { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' },
+                    { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' }
                   ]
 
 
