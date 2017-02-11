@@ -135,6 +135,12 @@ $(function() {
                                                         "<p>Twitter: <a href='https://twitter.com/superhandstouch' target='_blank'>Visit</a></p>" +
                                                         "<p>Website: <a href='http://www.superhandstouch.org.uk/' target='_blank'>Visit</a></p>"
                                           },
+                      "Meerkats": { "bio":  "<p>Touch Football Club based in Scotland. We play predominately in the Edinburgh and Aberdeen leagues and the Scottish Touch Series.</p>" +
+                                            "<p>Currently trying expand our club, all new and experienced players welcome.</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/meerkatstouchscotland' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/meerkatstouch' target='_blank'>Visit</a></p>" +
+                                            "<p>Email: meerkatstouch@hotmail.co.uk</p>"     
+                                          },
                       "Northampton COYS": { "bio": "<p>Playing at CTS, DTS and social level, across the country.</p>" +
                                                    "<p>The biggest Touch club in the East Midlands, always looking for players of all abilities, from beginners to pros.</p>" +
                                                    "<p>Facebook: <a href='https://www.facebook.com/COYSTouchRugby/' target='_blank'>Visit</a></p>" +
@@ -185,6 +191,7 @@ $(function() {
                     { name: 'Glasgow Blue Jays', lat: 55.876742, long: -4.336243, title: 'Glasgow Blue Jays Touch', icon_color: '#ADD8E6', image: 'glasgow_blue_jays_banner.jpg' },
                     { name: 'Glasgow Phoenix', lat: 55.848725, long: -4.134813, title: 'Glasgow Phoenix Touch', icon_color: '#000000', image: 'glasgow_phoenix_banner.jpg' },
                     { name: 'Edinburgh Superhands', lat: 55.940800, long: -3.194906, title: 'Edinburgh Superhands Touch', icon_color: '#2FC2EF', image: 'superhands_banner.jpeg' },
+                    { name: 'Meerkats', lat: 55.963502, long: -3.217582, title: 'Meerkats Touch', icon_color: '#D3D3D3', image: 'meerkats_banner.jpg' },
                     { name: 'Northampton COYS', lat: 52.228787, long: -0.864090, title: 'Northampton COYS Touch', icon_color: '#085a7f', image: 'northampton_coys_banner.jpg' },
                     { name: 'Mawsley', lat: 52.376484, long: -0.810652, title: 'Mawsley Touch', icon_color: '#000080', image: 'mawsley_banner.jpg' },
                     { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' }
