@@ -162,6 +162,11 @@ $(function() {
                                                    "<p>Facebook: <a href='https://www.facebook.com/HorshamRugbyClub/' target='_blank'>Visit</a></p>" +
                                                    "<p>Twitter: <a href='https://twitter.com/horshamtouch' target='_blank'>Visit</a></p>" +
                                                    "<p>Website: <a href='http://www.horshamrufc.com/teams/71878' target='_blank'>Visit</a></p>"
+                                          },
+                      "Blackadders": { "bio":  "<p>Blackadders train every Wednesday and Thursday evening at Rockcliff rugby club from 6:30 - 7:30.</p>" +
+                                               "<p>Facebook: <a href='https://www.facebook.com/BlackaddersTouch/' target='_blank'>Visit</a></p>" +
+                                               "<p>Twitter: <a href='https://twitter.com/adders_touch' target='_blank'>Visit</a></p>" +
+                                               "<p>Website: <a href='http://www.blackadderstouchrugby.co.uk/' target='_blank'>Visit</a></p>"
                                           }
 
                 }
@@ -201,7 +206,8 @@ $(function() {
                     { name: 'Northampton COYS', lat: 52.228787, long: -0.864090, title: 'Northampton COYS Touch', icon_color: '#085a7f', image: 'northampton_coys_banner.jpg' },
                     { name: 'Mawsley', lat: 52.376484, long: -0.810652, title: 'Mawsley Touch', icon_color: '#000080', image: 'mawsley_banner.jpg' },
                     { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' },
-                    { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' }
+                    { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' },
+                    { name: 'Blackadders', lat: 55.037193, long: -1.449901, title: 'Blackadders Touch', icon_color: '#FFA500', image: 'blackadders_banner.jpg' }
                   ]
 
 
