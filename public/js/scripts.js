@@ -122,6 +122,13 @@ $(function() {
                                                     "<p>Facebook: <a href='https://www.facebook.com/groups/399338000096978/' target='_blank'>Visit</a></p>" +
                                                     "<p>Twitter: <a href='https://twitter.com/glasgowbluejays' target='_blank'>Visit</a></p>"
                                             },
+                      "Glasgow Phoenix": { "bio":  "<p>Glasgow Phoenix is the city’s newest Touch Rugby Team. Our crew of guys and girls are here to welcome you to this fantastic new variation on rugby.</p>" +
+                                                   "<p>There’s no hard contact, teams are mixed and no experience is necessary.</p>" +
+                                                   "<p>If you’re looking to gain fitness, get involved with a terrific sport and play in a unique mixed team environment then Touch Rugby is for you.</p>" +
+                                                   "<p>Facebook: <a href='https://www.facebook.com/GlasgowPhoenixTouchTeam/' target='_blank'>Visit</a></p>" +
+                                                   "<p>Twitter: <a href='https://twitter.com/glgphoenix' target='_blank'>Visit</a></p>" +
+                                                   "<p>Website: <a href='http://www.glasgowphoenix.co.uk/' target='_blank'>Visit</a></p>"
+                                          },
                       "Northampton COYS": { "bio": "<p>Playing at CTS, DTS and social level, across the country.</p>" +
                                                    "<p>The biggest Touch club in the East Midlands, always looking for players of all abilities, from beginners to pros.</p>" +
                                                    "<p>Facebook: <a href='https://www.facebook.com/COYSTouchRugby/' target='_blank'>Visit</a></p>" +
@@ -170,6 +177,7 @@ $(function() {
                     { name: 'Glasgow Lions', lat: 55.848763, long: -4.235071, title: 'Glasgow Lions Touch', icon_color: '#000000', image: 'glasgow_lions_banner.jpg' },
                     { name: 'Glasgow Centurions', lat: 55.876775, long: -4.333513, title: 'Glasgow Centurions Touch', icon_color: '#525C65', image: 'glasgow_centurions_banner.jpg' },
                     { name: 'Glasgow Blue Jays', lat: 55.876742, long: -4.336243, title: 'Glasgow Blue Jays Touch', icon_color: '#ADD8E6', image: 'glasgow_blue_jays_banner.jpg' },
+                    { name: 'Glasgow Phoenix', lat: 55.848725, long: -4.134813, title: 'Glasgow Phoenix Touch', icon_color: '#000000', image: 'glasgow_phoenix_banner.jpg' },
                     { name: 'Northampton COYS', lat: 52.228787, long: -0.864090, title: 'Northampton COYS Touch', icon_color: '#085a7f', image: 'northampton_coys_banner.jpg' },
                     { name: 'Mawsley', lat: 52.376484, long: -0.810652, title: 'Mawsley Touch', icon_color: '#000080', image: 'mawsley_banner.jpg' },
                     { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' }
