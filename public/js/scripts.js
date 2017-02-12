@@ -173,6 +173,12 @@ $(function() {
                                             "<p>Facebook: <a href='https://www.facebook.com/ThamesValleyVikings/' target='_blank'>Visit</a></p>" +
                                             "<p>Twitter: <a href='https://twitter.com/TVVikingsTouch' target='_blank'>Visit</a></p>" +
                                             "<p>Website: <a href='http://www.pitchero.com/clubs/thamesvalleyvikingsandvixens' target='_blank'>Visit</a></p>"
+                                          },
+                      "Nomads": { "bio":    "<p>North Norfolk Touch was set up in 2015 by Soul Phoenix to provide local people with the opportunity to learn, play and enjoy this truly amazing sport.</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/nomadstouch/' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/nomadstouchrug1' target='_blank'>Visit</a></p>" +
+                                            "<p>Website: <a href='http://www.pitchero.com/clubs/nomadstouchrugby/' target='_blank'>Visit</a></p>" +
+                                            "<p>Email:  soulphoenix@hotmail.com</p>"
                                           }
 
                 }
@@ -214,7 +220,8 @@ $(function() {
                     { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' },
                     { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' },
                     { name: 'Blackadders', lat: 55.037193, long: -1.449901, title: 'Blackadders Touch', icon_color: '#FFA500', image: 'blackadders_banner.jpg' },
-                    { name: 'Vikings', lat: 51.465979, long: -0.912803, title: 'Thames Valley Vikings Touch', icon_color: '#2FC2EF', image: 'thames_valley_banner.jpeg' }
+                    { name: 'Vikings', lat: 51.465979, long: -0.912803, title: 'Thames Valley Vikings Touch', icon_color: '#2FC2EF', image: 'thames_valley_banner.jpeg' },
+                    { name: 'Nomads', lat: 52.919160, long: 1.118560, title: 'Nomads Touch', icon_color: '#000000', image: 'nomads_banner.jpeg' }
                   ]
 
     var template = Handlebars.compile($('#marker-content-template').html());
