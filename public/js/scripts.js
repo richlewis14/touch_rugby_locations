@@ -179,6 +179,17 @@ $(function() {
                                             "<p>Twitter: <a href='https://twitter.com/nomadstouchrug1' target='_blank'>Visit</a></p>" +
                                             "<p>Website: <a href='http://www.pitchero.com/clubs/nomadstouchrugby/' target='_blank'>Visit</a></p>" +
                                             "<p>Email:  soulphoenix@hotmail.com</p>"
+                                          },
+                      "Icenians": { "bio":  "<p>University of Anglia Touh Rugby.</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/UEATRC' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/UeaTouch' target='_blank'>Visit</a></p>" +
+                                            "<p>Website: <a href='http://www.ueatouch.co.uk/' target='_blank'>Visit</a></p>" +
+                                            "<p>Email:  ueatouch@gmail.com</p>"
+                                          },
+                      "Norwich Rebels": { "bio":  "<p>Join us, our sessions are open to all. We currently run Sunday morning sessions (10AM), and Tuesday evening sessions (6PM) both at Eaton Park.</p>" +
+                                                  "<p>Facebook: <a href='https://www.facebook.com/groups/104554586269779/' target='_blank'>Visit</a></p>" +
+                                                  "<p>Website: <a href='http://www.norwichrebels.com/' target='_blank'>Visit</a></p>" +
+                                                  "<p>Email:  contact@norwichrebels.com</p>"
                                           }
 
                 }
@@ -221,7 +232,9 @@ $(function() {
                     { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' },
                     { name: 'Blackadders', lat: 55.037193, long: -1.449901, title: 'Blackadders Touch', icon_color: '#FFA500', image: 'blackadders_banner.jpg' },
                     { name: 'Vikings', lat: 51.465979, long: -0.912803, title: 'Thames Valley Vikings Touch', icon_color: '#2FC2EF', image: 'thames_valley_banner.jpeg' },
-                    { name: 'Nomads', lat: 52.919160, long: 1.118560, title: 'Nomads Touch', icon_color: '#000000', image: 'nomads_banner.jpeg' }
+                    { name: 'Nomads', lat: 52.919160, long: 1.118560, title: 'Nomads Touch', icon_color: '#000000', image: 'nomads_banner.jpeg' },
+                    { name: 'Icenians', lat: 52.624609, long: 1.240875, title: 'UAE Touch Rugby', icon_color: '#00004D', image: 'icenians_banner.jpg' },
+                    { name: 'Norwich Rebels', lat: 52.619822, long: 1.256304, title: 'Norwich Rebels Touch', icon_color: '#FF0000', image: 'norwich_rebels_banner.jpg' }
                   ]
 
     var template = Handlebars.compile($('#marker-content-template').html());
