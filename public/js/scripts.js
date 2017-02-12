@@ -167,6 +167,12 @@ $(function() {
                                                "<p>Facebook: <a href='https://www.facebook.com/BlackaddersTouch/' target='_blank'>Visit</a></p>" +
                                                "<p>Twitter: <a href='https://twitter.com/adders_touch' target='_blank'>Visit</a></p>" +
                                                "<p>Website: <a href='http://www.blackadderstouchrugby.co.uk/' target='_blank'>Visit</a></p>"
+                                          },
+                      "Vikings": { "bio":  "<p>Home of the TV Vikings, one of the leading touch rugby clubs in the UK since 2005.</p>" +
+                                           "<p>We welcome all abilities, so if you are interested in getting involved in playing then get in touch.</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/ThamesValleyVikings/' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/TVVikingsTouch' target='_blank'>Visit</a></p>" +
+                                            "<p>Website: <a href='http://www.pitchero.com/clubs/thamesvalleyvikingsandvixens' target='_blank'>Visit</a></p>"
                                           }
 
                 }
@@ -207,9 +213,9 @@ $(function() {
                     { name: 'Mawsley', lat: 52.376484, long: -0.810652, title: 'Mawsley Touch', icon_color: '#000080', image: 'mawsley_banner.jpg' },
                     { name: 'Chester Cheetahs', lat: 53.197489, long: -2.842937, title: 'Chester Cheetahs Touch', icon_color: '#cd0802', image: 'chester_cheetahs_banner.jpg' },
                     { name: 'Horsham Tigers', lat: 51.055943, long: -0.293169, title: 'Horsham Tigers Touch', icon_color: '#348912', image: 'horsham_banner.jpg' },
-                    { name: 'Blackadders', lat: 55.037193, long: -1.449901, title: 'Blackadders Touch', icon_color: '#FFA500', image: 'blackadders_banner.jpg' }
+                    { name: 'Blackadders', lat: 55.037193, long: -1.449901, title: 'Blackadders Touch', icon_color: '#FFA500', image: 'blackadders_banner.jpg' },
+                    { name: 'Vikings', lat: 51.465979, long: -0.912803, title: 'Thames Valley Vikings Touch', icon_color: '#2FC2EF', image: 'thames_valley_banner.jpeg' }
                   ]
-
 
     var template = Handlebars.compile($('#marker-content-template').html());
 
