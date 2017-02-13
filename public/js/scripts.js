@@ -190,6 +190,22 @@ $(function() {
                                                   "<p>Facebook: <a href='https://www.facebook.com/groups/104554586269779/' target='_blank'>Visit</a></p>" +
                                                   "<p>Website: <a href='http://www.norwichrebels.com/' target='_blank'>Visit</a></p>" +
                                                   "<p>Email:  contact@norwichrebels.com</p>"
+                                          },
+                      "Mowhawks": { "bio":  "<p>Maidenhead RFC Mohawks play non-contact TOUCH (rugby). New members (male and female) always welcome to join us</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/MaidenheadMohawks/' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/mohawkstouch' target='_blank'>Visit</a>" +
+                                            "<p>Website: <a href='http://www.maidenheadrfc.com/Mohawks.php' target='_blank'>Visit</a></p>" +
+                                            "<p>Email:  mohawkstouch@gmail.com</p>"
+                                          },
+                      "Lufbra": { "bio":  "<p>A social society for both males and females of every level from International players to total Newbies!</p>" +
+                                          "<p>Facebook: <a href='https://www.facebook.com/groups/382702875134615/' target='_blank'>Visit</a></p>" +
+                                          "<p>Twitter: <a href='https://twitter.com/lufbratouch' target='_blank'>Visit</a>" +
+                                          "<p>Website: <a href='https://www.lsu.co.uk/society/touchrugby/' target='_blank'>Visit</a></p>"
+                                          },
+                      "Nailsea": { "bio":  "<p>With mixed teams of all ages and abilities everyone is welcome to try out this great sport.</p>" +
+                                          "<p>Facebook: <a href='https://www.facebook.com/Nailsea-Backwell-Touch-Rugby-744826638898067/' target='_blank'>Visit</a></p>" +
+                                          "<p>Twitter: <a href='https://twitter.com/nandbtouchrugby' target='_blank'>Visit</a>" +
+                                          "<p>Website: <a href='http://www.pitchero.com/clubs/nailseabackwell' target='_blank'>Visit</a></p>"
                                           }
 
                 }
@@ -234,7 +250,10 @@ $(function() {
                     { name: 'Vikings', lat: 51.465979, long: -0.912803, title: 'Thames Valley Vikings Touch', icon_color: '#2FC2EF', image: 'thames_valley_banner.jpeg' },
                     { name: 'Nomads', lat: 52.919160, long: 1.118560, title: 'Nomads Touch', icon_color: '#000000', image: 'nomads_banner.jpeg' },
                     { name: 'Icenians', lat: 52.624609, long: 1.240875, title: 'UAE Touch Rugby', icon_color: '#00004D', image: 'icenians_banner.jpg' },
-                    { name: 'Norwich Rebels', lat: 52.619822, long: 1.256304, title: 'Norwich Rebels Touch', icon_color: '#FF0000', image: 'norwich_rebels_banner.jpg' }
+                    { name: 'Norwich Rebels', lat: 52.619822, long: 1.256304, title: 'Norwich Rebels Touch', icon_color: '#FF0000', image: 'norwich_rebels_banner.jpg' },
+                    { name: 'Mowhawks', lat: 51.512303, long: -0.716213, title: 'Maidenhead Mowhawks Touch', icon_color: '#000000', image: 'mowhawks_banner.jpg' },
+                    { name: 'Lufbra', lat: 52.768162, long: -1.225329, title: 'LSU Touch', icon_color: '#FF0000', image: 'lufbra_banner.jpeg' },
+                    { name: 'Nailsea', lat: 51.429908, long: -2.759162, title: 'Nailsea Touch', icon_color: '#000000', image: 'nailsea_banner.jpg' }
                   ]
 
     var template = Handlebars.compile($('#marker-content-template').html());
