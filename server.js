@@ -52,16 +52,7 @@ app.get('/admin', (req, res) => {
   res.render('admin_login');
 });
 
-app.get('/admin/main', (req, res) => {
-  if (!req.user) {
-    res.redirect('/admin');
-    return;
-  }
-  res.render('admin_main', { user: req.user });
-});
-
 app.post('/admin', passport.authenticate('local', { failureRedirect: '/admin' }), function(req, res) {
-  console.log(req.user);
   res.redirect('/admin/main');
 });
 
@@ -70,6 +61,41 @@ app.get('/admin/sign_out', function(req, res) {
   res.redirect('/admin');
 });
 
+app.get('/admin/main', (req, res) => {
+  if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
+  RugbyClub.find({}, (err, results) => {
+    if (err) {
+      console.log('Error obtaining club records');
+      res.render('admin_main', { user: req.user, clubs: [] });
+      return;
+    }
+    res.render('admin_main', { user: req.user, clubs: results });
+  });
+});
+
+app.post('/admin/addClub', (req, res) => {
+  if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
+  const club = req.body.name;
+  const bio = req.body.bio;
+  const newClub = new RugbyClub();
+  newClub.clubName = club;
+  newClub.bio = bio;
+  newClub.save((error) => {
+    if (error) {
+      console.log('Error: unable to add new club: ', error);
+      res.redirect('/admin/main');
+    } else {
+      console.log('club saved');
+      res.redirect('/admin/main');
+    }
+  });
+});
 
 app.listen(PORT);
 console.log('App listening on %d', PORT);
