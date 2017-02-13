@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Touch Locations</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css" />
 </head>
 <body>
   Touch Locations Form
 
-  <form action="/locations" method="POST">
-  <input type="text" placeholder="title" name="title"></br>
-  <input type="text" placeholder="position_lat" name="position_lat"></br>
-  <input type="text" placeholder="position_long" name="position_long">
+  <form action="/locations" method="POST" enctype="multipart/form-data">
+  <input type="text" placeholder="Latitude" name="lat"></br>
+  <input type="text" placeholder="Longtitide" name="long"></br>
+  <input type="text" placeholder="Display Title" name="title"></br>
+  <input type="text" placeholder="Icon Color" name="icon_color"></br>
+  <input type="text" placeholder="Team Bio" name="bio"></br>
+  <input type="file" name="image_banner"></br>
+
   <button type="submit">Submit</button>
 </form>
 </body>
