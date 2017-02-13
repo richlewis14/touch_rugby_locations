@@ -4,11 +4,20 @@
   "description": "Interactive map with locations of touch teams in wales",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive",
+    "lint": "eslint --quiet **"
   },
   "author": "Richard Lewis",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.5",
     "express": "^4.14.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
   }
 }
