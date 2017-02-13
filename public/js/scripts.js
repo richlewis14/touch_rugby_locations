@@ -43,6 +43,14 @@ $(function() {
                                           "<p>Website: <a href='http://cardifftouch.com/' target='_blank'>Visit</a></p>" +
                                           "<p>Facebook: <a href='https://www.facebook.com/cardifftouch/' target='_blank'>Visit</a></p>"
                                 },
+                      "Rebellion": { "bio": "<p>Rebellion are Touch Rugby Wales Mens Division 1 Champions 6 yrs running! WRU & WTA Touch Champions 2015.</p>" +
+                                            "<p>Facebook: <a href='https://www.facebook.com/REBELLION-122602272272/' target='_blank'>Visit</a></p>" +
+                                            "<p>Twitter: <a href='https://twitter.com/rebelliontouch' target='_blank'>Visit</a></p>"
+                                },
+                      "OSW": { "bio": "<p>OSW based in Bristol, if you are interested in playing please contact Joe on the email below</p>" +
+                                      "<p>Twitter: <a href='https://twitter.com/osw_touch' target='_blank'>Visit</a></p>" +
+                                      "<p>Email: Joe.Williams@cardiffblues.com</p>"
+                                },
                       "Phoenix": { "bio": "<p>We are a Mixed, Men’s, Women’s and Junior’s Touch (rugby) club which was formed in 2010.</p>" +
                                           "<p>We are affiliated to the Wales Touch Association and are the current Wales Touch Series (WTS) reigning champions, winning the series for the first time in 2015!.</p>" +
                                           "<p>We are based at Old Penarthians RFC, in Penarth and train every Friday:</p>" +
@@ -206,6 +214,16 @@ $(function() {
                                           "<p>Facebook: <a href='https://www.facebook.com/Nailsea-Backwell-Touch-Rugby-744826638898067/' target='_blank'>Visit</a></p>" +
                                           "<p>Twitter: <a href='https://twitter.com/nandbtouchrugby' target='_blank'>Visit</a>" +
                                           "<p>Website: <a href='http://www.pitchero.com/clubs/nailseabackwell' target='_blank'>Visit</a></p>"
+                                          },
+                      "St Marys": { "bio":  "<p>Touch is a minimal contact sport suitable for all, whether rediscovering sport or wanting to get fit. A great way to socialise & have fun. No exp needed</p>" +
+                                          "<p>Facebook: <a href='https://www.facebook.com/SMOBTOUCH/' target='_blank'>Visit</a></p>" +
+                                          "<p>Twitter: <a href='https://twitter.com/smobrugby' target='_blank'>Visit</a>" +
+                                          "<p>Website: <a href='http://www.pitchero.com/clubs/stmarysoldboysrfc/news/our-o2-touch-centre-is-now-featured-as-an-o2-prior-1722094.html' target='_blank'>Visit</a></p>"
+                                          },
+                      "Bath University": { "bio":  "<p>The University of Bath rugby programme includes a mixed touch team, welcoming both men and women of all abilities to the pitch – from first-time players to internationals.</p>" +
+                                                   "<p>Facebook: <a href='https://www.facebook.com/SMOBTOUCH/' target='_blank'>Visit</a></p>" +
+                                                   "<p>Twitter: <a href='https://twitter.com/uobathtouch' target='_blank'>Visit</a>" +
+                                                   "<p>Website: <a href='https://www.teambath.com/sport/rugby/teams-training-times/touch-rugby/' target='_blank'>Visit</a></p>"
                                           }
 
                 }
@@ -225,6 +243,8 @@ $(function() {
                     { name: 'Raptors', lat: 51.492007, long: -3.201719, title: 'Cardiff Raptors Touch', icon_color: '#05950a', image: 'raptors_banner.jpeg' },
                     { name: 'Coyotes', lat: 51.507530, long: -3.232264, title: 'Coyotes Cardiff Touch', icon_color: '#5a5a5a', image: 'coyotes_banner.jpg' },
                     { name: 'Phoenix', lat: 51.427040, long: -3.186492, title: 'Phoenix Touch', icon_color: '#3B59B6', image: 'phoenix_banner.jpeg' },
+                    { name: 'Rebellion', lat: 51.616777, long: -3.425001, title: 'Rebellion Touch', icon_color: '#FF0000', image: 'rebellion_banner.jpg' },
+                    { name: 'OSW', lat: 51.460081, long: -2.603354, title: 'Old South Wales Touch', icon_color: '#D3D3D3', image: 'osw_banner.jpeg' },
                     { name: 'Kiwi', lat: 51.517129, long: -3.240999, title: 'Kiwi Dragons Touch', icon_color: '#000000', image: 'kiwi_banner.jpeg' },
                     { name: 'Llangain', lat: 51.848165, long: -4.328179, title: 'Llangain Touch', icon_color: '#FFB80E', image: 'llangain_banner.jpg' },
                     { name: 'Cobras', lat: 51.854403, long: -4.315787, title: 'Camarthen Cobras Touch', icon_color: '#5a5a5a', image: 'cobras_banner.jpg' },
@@ -253,7 +273,9 @@ $(function() {
                     { name: 'Norwich Rebels', lat: 52.619822, long: 1.256304, title: 'Norwich Rebels Touch', icon_color: '#FF0000', image: 'norwich_rebels_banner.jpg' },
                     { name: 'Mowhawks', lat: 51.512303, long: -0.716213, title: 'Maidenhead Mowhawks Touch', icon_color: '#000000', image: 'mowhawks_banner.jpg' },
                     { name: 'Lufbra', lat: 52.768162, long: -1.225329, title: 'LSU Touch', icon_color: '#FF0000', image: 'lufbra_banner.jpeg' },
-                    { name: 'Nailsea', lat: 51.429908, long: -2.759162, title: 'Nailsea Touch', icon_color: '#000000', image: 'nailsea_banner.jpg' }
+                    { name: 'Nailsea', lat: 51.429908, long: -2.759162, title: 'Nailsea Touch', icon_color: '#000000', image: 'nailsea_banner.jpg' },
+                    { name: 'St Marys', lat: 51.538564, long: -2.527620, title: 'St Marys Old Boys Touch', icon_color: '#000000', image: 'st_marys_banner.jpg' },
+                    { name: 'Bath University', lat: 51.377654, long: -2.324313, title: 'Bath University Touch', icon_color: '#004A91', image: 'bath_university_banner.jpeg' }
                   ]
 
     var template = Handlebars.compile($('#marker-content-template').html());
