@@ -8,31 +8,11 @@
   - `node server.js`
   - Mongo running in background
 
-##Setup admin (will update with a better way when have more time)
-  
-  - `node` in terminal in app root
+##Setup admin
+  - Ensure jake is installed globally `npm install jake -g`
 
-```
-const mongoose = require('mongoose');
-const adminUser = require('./db/adminUser');
-mongoose.Promise = global.Promise;
-const mongodb = process.env.MONGODB_URI || 'mongodb://localhost/touch_rugby_db';
-
-mongoose.connect(mongodb, { config: { autoIndex: false } }, function(err) {
-  if (err) {
-    console.log('Could not connect to mongodb.');
-  }
-});
-
-adminUser.register(new adminUser({username: 'admin'}), 'password', function(err) {
-  if (err) {
-    console.log('error while user register!', err);
-    return next(err);
-  }
-  console.log('user registered!');
-});
-
-```
+  - To create the admin user run `jake test:createAdminUser`
+  - To delete the admin user run `jake test:deleteAdminUser`
 
 ##Testing
   - `npm test`
