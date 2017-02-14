@@ -83,9 +83,13 @@ app.post('/admin/addClub', (req, res) => {
   }
   const club = req.body.name;
   const bio = req.body.bio;
+  const latitude = req.body.latitude;
+  const longtitude = req.body.longtitude;
   const newClub = new RugbyClub();
   newClub.clubName = club;
   newClub.bio = bio;
+  newClub.latitude = latitude;
+  newClub.longtitude = longtitude;
   newClub.save((error) => {
     if (error) {
       console.log('Error: unable to add new club: ', error);

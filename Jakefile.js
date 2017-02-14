@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const adminUser = require('./db/adminUser');
 
+const RugbyClub = require('./db/rugby_club');
+
 mongoose.Promise = global.Promise;
 const mongodb = process.env.MONGODB_URI || 'mongodb://localhost/touch_rugby_db';
 
@@ -36,6 +38,19 @@ namespace('test', function () {
         if (error) return console.log('error while removing user!', error);
         if (!error) return console.log('User removed');
       });
+    });
+    mongoose.disconnect();
+  });
+});
+
+namespace('test', function () {
+  desc('Delete ruby club collection');
+  task('deleteRugbyClubCollection', [], function () {
+     mongoose.connect(mongodb, (err) => {
+      if (err) {
+        console.log('Could not connect to mongodb.', err);
+      }
+      RugbyClub.collection.drop();
     });
     mongoose.disconnect();
   });
