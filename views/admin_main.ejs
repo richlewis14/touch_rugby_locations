@@ -44,7 +44,7 @@
           </tbody>
         </table>
         <% } %>
-        <form class="form-horizontal" action="/admin/addClub" method="post">
+        <form class="form-horizontal" action="/admin/addClub" method="post" enctype="multipart/form-data">
         <fieldset>
           <legend>Add a Club</legend>
           <div class="form-group">
@@ -69,6 +69,12 @@
             <label for="inputBio" class="col-lg-2 control-label">bio: </label>
             <div class="col-lg-10">
               <input type="text" class="form-control" id="inputBio" placeholder="<p>some details</p>"  name="bio">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageBanner" class="col-lg-2 control-label">Image: </label>
+            <div class="col-lg-10">
+              <input type="file" class="form-control" id="imageBanner" placeholder="Choose Image"  name="imageBanner">
             </div>
           </div>
           <div class="form-group">

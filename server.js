@@ -1,4 +1,7 @@
 const express = require('express');
+var fileUpload = require('express-fileupload');
+const AWS = require('aws-sdk');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
@@ -7,6 +10,9 @@ const cookieParser = require('cookie-parser');
 
 const adminUser = require('./db/adminUser');
 const RugbyClub = require('./db/rugby_club');
+
+const Helper = require('./helpers/helper.js');
+const helper = new Helper();
 
 const PORT = process.env.PORT || 3000;
 
@@ -40,6 +46,8 @@ app.use(bodyParser.urlencoded({
 app.set('views', './views');
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
+
+app.use(fileUpload());
 
 
 app.get('/', function(req, res) {
@@ -81,15 +89,38 @@ app.post('/admin/addClub', (req, res) => {
     res.redirect('/admin');
     return;
   }
+
+  // Upload image to S3
+  var s3Bucket = new AWS.S3( { params: { Bucket: process.env.AWS_BUCKET, Key: process.env.AWS_ACCESS_KEY_ID } } )
+  var data = { Key: req.files.imageBanner.name,
+               Body: req.files.imageBanner.data,
+               ACL: "public-read",
+               ContentType: helper.getContentTypeByFile(req.files.imageBanner.name)
+             };
+
+  s3Bucket.putObject(data, function(err){
+    if (err) 
+    { console.log('Error uploading data:'); 
+    } else {
+      console.log('Uploaded data:'); 
+    }
+  });
+  
+  const publicUrl = "https://s3-eu-west-1.amazonaws.com/" + process.env.AWS_BUCKET + "/" + data.Key
   const club = req.body.name;
   const bio = req.body.bio;
   const latitude = req.body.latitude;
   const longtitude = req.body.longtitude;
+  const iconColor = req.body.iconColor;
+  const imageBanner = publicUrl;
   const newClub = new RugbyClub();
   newClub.clubName = club;
   newClub.bio = bio;
   newClub.latitude = latitude;
   newClub.longtitude = longtitude;
+  newClub.iconColor = iconColor;
+  newClub.imageBanner = imageBanner;
+  console.log("Public URL is " + publicUrl);
   newClub.save((error) => {
     if (error) {
       console.log('Error: unable to add new club: ', error);

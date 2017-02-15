@@ -19,3 +19,4 @@ jspm_packages
 *.tgz
 .yarn-integrity
 .DS_Store
+.env
