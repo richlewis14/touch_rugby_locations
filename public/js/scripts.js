@@ -224,7 +224,18 @@ $(function() {
                                                    "<p>Facebook: <a href='https://www.facebook.com/SMOBTOUCH/' target='_blank'>Visit</a></p>" +
                                                    "<p>Twitter: <a href='https://twitter.com/uobathtouch' target='_blank'>Visit</a>" +
                                                    "<p>Website: <a href='https://www.teambath.com/sport/rugby/teams-training-times/touch-rugby/' target='_blank'>Visit</a></p>"
+                                          },
+                      "Trojans Touch": { "bio":  "<p>Trojans RFC run a summer touch rugby team, new players welcome.</p>" +
+                                                   "<p>Facebook: <a href='https://www.facebook.com/Trojans-Rugby-Club-109977992395971/' target='_blank'>Visit</a></p>" +
+                                                   "<p>Twitter: <a href='https://twitter.com/TrojansFC1874' target='_blank'>Visit</a>" +
+                                                   "<p>Website: <a href='http://www.trojansrugby.co.uk/' target='_blank'>Visit</a></p>"
+                                          },
+                      "Southampton University": { "bio":  "<p>Get in touch to find out more about the club, how to get involved and follow our progress.</p>" +
+                                                   "<p>Facebook: <a href='https://www.facebook.com/sotonunitouch/' target='_blank'>Visit</a></p>" +
+                                                   "<p>Twitter: <a href='https://twitter.com/sotonunitouch' target='_blank'>Visit</a>" +
+                                                   "<p>Website: <a href='https://www.unionsouthampton.org/groups/touch-rugby' target='_blank'>Visit</a></p>"
                                           }
+
 
                 }
 
@@ -275,7 +286,9 @@ $(function() {
                     { name: 'Lufbra', lat: 52.768162, long: -1.225329, title: 'LSU Touch', icon_color: '#FF0000', image: 'lufbra_banner.jpeg' },
                     { name: 'Nailsea', lat: 51.429908, long: -2.759162, title: 'Nailsea Touch', icon_color: '#000000', image: 'nailsea_banner.jpg' },
                     { name: 'St Marys', lat: 51.538564, long: -2.527620, title: 'St Marys Old Boys Touch', icon_color: '#000000', image: 'st_marys_banner.jpg' },
-                    { name: 'Bath University', lat: 51.377654, long: -2.324313, title: 'Bath University Touch', icon_color: '#004A91', image: 'bath_university_banner.jpeg' }
+                    { name: 'Bath University', lat: 51.377654, long: -2.324313, title: 'Bath University Touch', icon_color: '#004A91', image: 'bath_university_banner.jpeg' },
+                    { name: 'Trojans Touch', lat: 50.951518, long: -1.382030, title: 'Trojans Summer Touch', icon_color: '#551A8B', image: 'trojans_touch_banner.jpg' },
+                    { name: 'Southampton University', lat: 50.907652, long: -1.400017, title: 'Southampton University Touch', icon_color: '#DD2E44', image: 'southampton_university_banner.jpg' }
                   ]
 
     var template = Handlebars.compile($('#marker-content-template').html());
