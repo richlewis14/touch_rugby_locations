@@ -2,6 +2,7 @@ const express = require('express');
 var fileUpload = require('express-fileupload');
 const AWS = require('aws-sdk');
 require('dotenv').config();
+var pry = require('pryjs');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
@@ -90,6 +91,7 @@ app.get('/admin/clubs', (req, res) => {
     res.redirect('/admin');
     return;
   }
+
   RugbyClub.find({}, (err, results) => {
     if (err) {
       console.log('Error obtaining club records');
@@ -155,6 +157,7 @@ app.post('/admin/removeClub/:id', (req, res) => {
     res.redirect('/admin');
     return;
   }
+
   // Add deletion of S3 bucket image here
   RugbyClub.remove(req.params.id, function(err) {
     if (err) {
@@ -167,19 +170,48 @@ app.post('/admin/removeClub/:id', (req, res) => {
 });
 
 // Edit Club, need to finish
-app.put('/admin/editClub/:id', (req, res) => {
+app.get('/admin/editClub/:id', (req, res) => {
+ if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
+
+  RugbyClub.find(req.params.id, (err, result) => {
+    if (err) {
+      console.log('Error obtaining club record');
+      res.render('admin_edit', { user: req.user, club: [] });
+      return;
+    }
+    res.render('admin_edit', { user: req.user, club: result });
+  });
+
+});
+
+// Update Rugby club
+app.post('/admin/editClub/:id', (req, res) => {
   if (!req.user) {
     res.redirect('/admin');
     return;
   }
   // Add update of S3 bucket image here if needed
-  RugbyClub.update(req.params.id, function(err) {
+  RugbyClub.update(
+    // Find user with id
+    {_id: req.params.id},
+    // Update fields
+    { clubName: req.body.name,
+      latitude: req.body.latitude,
+      longtitude: req.body.longtitude,
+      bio: req.body.bio,
+      iconColor: req.body.iconColor
+    }).exec(function(err, result) {
     if (err) {
       console.log('Something went wrong', err);
     } else {
-      console.log('club deleted');
+      console.log('club updated');
     }
+
   });
+  res.render('admin_main', { user: req.user });
 
 });
 

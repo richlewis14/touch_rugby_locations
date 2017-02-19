@@ -42,7 +42,9 @@
                 <td><%=clubs[i].longtitude %></td>
                 <td><%=clubs[i].latitude %></td>
                 <td><%=clubs[i].iconColor %></td>
-                <td><a id="removeClub" href="/admin/removeClub/<%= clubs[i].id %>">X</a></td>
+                <td><a id="removeClub" href="/admin/removeClub/<%= clubs[i].id %>">X</a>
+                    <a id="editClub" href="/admin/editClub/<%= clubs[i].id %>">edit</a>
+                </td>
               </tr>
             <% } %>
           </tbody>
