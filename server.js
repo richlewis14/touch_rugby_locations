@@ -51,7 +51,14 @@ app.use(fileUpload());
 
 
 app.get('/', function(req, res) {
-  res.render('index');
+  RugbyClub.find({}, (err, results) => {
+    if (err) {
+      console.log('Error obtaining club records');
+      res.render('index', { clubs: [] });
+      return;
+    }
+    res.render('index', { clubs: results });
+  });
 });
 
 // admin login for adding new clubs
@@ -74,16 +81,26 @@ app.get('/admin/main', (req, res) => {
     res.redirect('/admin');
     return;
   }
+    res.render('admin_main', { user: req.user });
+});
+
+// Show list of clubs
+app.get('/admin/clubs', (req, res) => {
+  if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
   RugbyClub.find({}, (err, results) => {
     if (err) {
       console.log('Error obtaining club records');
-      res.render('admin_main', { user: req.user, clubs: [] });
+      res.render('admin_clubs', { user: req.user, clubs: [] });
       return;
     }
-    res.render('admin_main', { user: req.user, clubs: results });
+    res.render('admin_clubs', { user: req.user, clubs: results });
   });
 });
 
+// Add Club
 app.post('/admin/addClub', (req, res) => {
   if (!req.user) {
     res.redirect('/admin');
@@ -130,6 +147,40 @@ app.post('/admin/addClub', (req, res) => {
       res.redirect('/admin/main');
     }
   });
+});
+
+// Remove Club
+app.post('/admin/removeClub/:id', (req, res) => {
+  if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
+  // Add deletion of S3 bucket image here
+  RugbyClub.remove(req.params.id, function(err) {
+    if (err) {
+      console.log('Something went wrong', err);
+    } else {
+      console.log('club deleted');
+    }
+  });
+
+});
+
+// Edit Club, need to finish
+app.put('/admin/editClub/:id', (req, res) => {
+  if (!req.user) {
+    res.redirect('/admin');
+    return;
+  }
+  // Add update of S3 bucket image here if needed
+  RugbyClub.update(req.params.id, function(err) {
+    if (err) {
+      console.log('Something went wrong', err);
+    } else {
+      console.log('club deleted');
+    }
+  });
+
 });
 
 app.listen(PORT);

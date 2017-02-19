@@ -33,9 +33,7 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBOHhw1I9AoOiHOoC6Y3jaS4GMZcmiek98"></script>
     <!-- Internal JS Libraries -->
-    <script type="text/javascript" src="/js/gmaps.js"></script>
     <script type="text/javascript" src="/js/snazzy-info-window.js"></script>
-    <script type="text/javascript" src="/js/scripts.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
@@ -68,4 +66,93 @@
      ga('send', 'pageview');
     </script>
   </body>
+  <script>
+    var clubs = <%- JSON.stringify(clubs) %>;
+    $(function() {
+
+    function createIcon(color) {
+      return {
+        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+        fillColor: color,
+        fillOpacity: 0.95,
+        scale: 2,
+        strokeColor: '#fff',
+        strokeWeight: 3,
+        anchor: new google.maps.Point(12, 24)
+      };
+    }
+
+    // Create the map
+    var map = new google.maps.Map($('.map-canvas')[0], {
+        zoom: 5,
+        //styles: mapStyle,
+        center: new google.maps.LatLng(52.4016798, -5.2837261)
+    });
+
+    var template = Handlebars.compile($('#marker-content-template').html());
+    $.each(clubs, function(i, e) {
+
+      var info = null;
+      var closeDelayed = false;
+      var closeDelayHandler = function() {
+      $(info.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            info.close();
+        }, 300);
+      };
+
+      var club = new google.maps.Marker({
+        map: map,
+        icon: createIcon(e.iconColor),
+        position: new google.maps.LatLng(e.latitude, e.longtitude),
+        title: e.clubName
+      });
+
+      var info = new SnazzyInfoWindow($.extend({},{
+        marker: club,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: e.clubName,
+            bgImg: e.imageBanner,
+            body: e.bio
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeDelayHandler);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeDelayHandler();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    }));
+  });
+
+});
+</script>
 </html>
