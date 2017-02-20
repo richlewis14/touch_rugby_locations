@@ -46,20 +46,20 @@ router.post('/addClub', (req, res) => {
     res.redirect('/admin');
     return;
   }
+  const club = req.body.name;
+  const bio = req.body.bio;
+  const latitude = req.body.latitude;
+  const longtitude = req.body.longtitude;
+  const iconColor = req.body.iconColor;
+  const newClub = new RugbyClub();
+  newClub.clubName = club;
+  newClub.bio = bio;
+  newClub.latitude = latitude;
+  newClub.longtitude = longtitude;
+  newClub.iconColor = iconColor;
   s3Helper.uploadToS3(req.files).then((data) => {
     const publicUrl = `https://s3-eu-west-1.amazonaws.com/${process.env.AWS_BUCKET}/${data.Key}`;
-    const club = req.body.name;
-    const bio = req.body.bio;
-    const latitude = req.body.latitude;
-    const longtitude = req.body.longtitude;
-    const iconColor = req.body.iconColor;
     const imageBanner = publicUrl;
-    const newClub = new RugbyClub();
-    newClub.clubName = club;
-    newClub.bio = bio;
-    newClub.latitude = latitude;
-    newClub.longtitude = longtitude;
-    newClub.iconColor = iconColor;
     newClub.imageBanner = imageBanner;
     console.log('Public URL is ', publicUrl);
     newClub.save((error) => {
@@ -72,13 +72,22 @@ router.post('/addClub', (req, res) => {
       }
     });
   }).catch((err) => {
-    console.error('Error uploading to S3', err);
+    console.log('Error uploading to S3', err);
+    newClub.save((error) => {
+      if (error) {
+        console.log('Error: unable to add new club: ', error);
+        res.redirect('/admin/main');
+      } else {
+        console.log('club saved');
+        res.redirect('/admin/main');
+      }
+    });
   });
 });
 
 
 // Remove Club
-router.post('/removeClub/:id', (req, res) => {
+router.get('/removeClub/:id', (req, res) => {
   if (!req.user) {
     res.redirect('/admin');
     return;
@@ -87,8 +96,10 @@ router.post('/removeClub/:id', (req, res) => {
   RugbyClub.remove(req.params.id, function(err) {
     if (err) {
       console.log('Something went wrong', err);
+      res.redirect('/admin/clubs');
     } else {
       console.log('club deleted');
+      res.redirect('/admin/clubs');
     }
   });
 });

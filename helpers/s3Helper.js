@@ -11,6 +11,10 @@ const s3Bucket = new AWS.S3({ params: s3Params });
 // Upload image to S3
 function uploadToS3(files) {
   return new Promise((resolve, reject) => {
+    if (!files || !files.imageBanner) {
+      reject(new Error('No image found'));
+      return;
+    }
     const data = {
       Key: files.imageBanner.name,
       Body: files.imageBanner.data,
