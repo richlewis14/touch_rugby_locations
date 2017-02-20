@@ -1,0 +1,17 @@
+[
+	{ "clubName": "Varsity Vandals Touch",
+	  "bio": "<p>We are a Touch Rugby team based in Cardiff, South Wales. We have over 40 players spread across 7 teams (Mens, Womens and Mixed).</p><p>We believe Touch Rugby is for everyone, no matter what level you think you may be at.</p><p>We regularly encourage new players to come to our training sessions on a Sunday Morning <a href='http://www.varsityvandals.com/contact' target='_blank'>Click Here</a> to get in touch and find out more.</p><p>Website: <a href='http://www.varsityvandals.com/' target='_blank'>Visit</a></p><p>Facebook: <a href='https://www.facebook.com/VarsityVandals/' target='_blank'>Visit</a></p>",
+      "latitude": "51.489401",
+      "longtitude": "-3.203586",
+      "iconColor": "#ff61b4",
+      "imageBanner": "https://touchlocations.s3-eu-west-1.amazonaws.com/vandals_banner.jpg"
+	},
+	{ "clubName": "Gower Dragons Touch",
+	  "bio": "<p>We are a Touch Rugby team based in Cardiff, South Wales. We have over 40 players spread across 7 teams (Mens, Womens and Mixed).</p><p>We believe Touch Rugby is for everyone, no matter what level you think you may be at.</p><p>We regularly encourage new players to come to our training sessions on a Sunday Morning <a href='http://www.varsityvandals.com/contact' target='_blank'>Click Here</a> to get in touch and find out more.</p><p>Website: <a href='http://www.varsityvandals.com/' target='_blank'>Visit</a></p><p>Facebook: <a href='https://www.facebook.com/VarsityVandals/' target='_blank'>Visit</a></p>",
+      "latitude": "51.572589",
+      "longtitude": "-4.051466",
+      "iconColor": "#FF0000",
+      "imageBanner": "https://touchlocations.s3-eu-west-1.amazonaws.com/vandals_banner.jpg"
+
+	}
+]
