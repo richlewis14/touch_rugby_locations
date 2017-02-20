@@ -8,7 +8,7 @@ const rugbyClub = new Schema({
   latitude: String,
   longtitude: String,
   iconColor: String,
-  imageBanner:  String
+  imageBanner: String,
 });
 
 module.exports = mongoose.model('rugbyClub', rugbyClub);
