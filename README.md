@@ -14,6 +14,11 @@
   - To create the admin user run `jake test:createAdminUser`
   - To delete the admin user run `jake test:deleteAdminUser`
 
+##Seed Rugby CLub Data
+- `npm install -g node-mongo-seeds`
+- run `seed`
+- Every time you run $ seed it will blow away all the data in your collections and re-populate them with whatever is in your /seeds directory.
+
 ##Testing
   - `npm test`
   - `npm run lint`

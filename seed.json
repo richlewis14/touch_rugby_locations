@@ -1,0 +1,5 @@
+{
+	"undefined": "localhost/touch_rugby_db",
+	"dev": "localhost/touch_rugby_db",
+	"prod": "localhost/touch_rugby_db"
+}
