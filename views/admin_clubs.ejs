@@ -42,8 +42,9 @@
                 <td><%=clubs[i].longtitude %></td>
                 <td><%=clubs[i].latitude %></td>
                 <td><%=clubs[i].iconColor %></td>
-                <td><a id="removeClub" href="/admin/removeClub/<%= clubs[i].id %>">X</a>
-                    <a id="editClub" href="/admin/editClub/<%= clubs[i].id %>">edit</a>
+                <td>
+                  <a id="editClub" href="/admin/editClub/<%= clubs[i].id %>">edit</a>
+                  <a id="removeClub" href="/admin/removeClub/<%= clubs[i].id %>">X</a>
                 </td>
               </tr>
             <% } %>
@@ -51,14 +52,5 @@
         </table>
         <% } %>
     </div>
-    <script>
-    $(function() {
-      $("#removeClub").on("click",function(e) {
-        e.preventDefault(); // cancel the link itself
-        $.post(this.href);
-        window.location.href = "/admin/main";
-      });
-   });
-</script>
   </body>
 </html>
