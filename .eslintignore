@@ -7,3 +7,4 @@ Vagrantfile
 deployment/*
 dump.rdb
 public/*
+Jakefile.js
