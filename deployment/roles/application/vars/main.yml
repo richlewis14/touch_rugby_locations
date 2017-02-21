@@ -1,0 +1,5 @@
+app:
+  main_dir: /var/www/touch_rugby
+
+nginx:
+  main_dir: /etc/nginx

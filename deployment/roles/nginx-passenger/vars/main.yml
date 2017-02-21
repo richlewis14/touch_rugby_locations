@@ -1,0 +1,4 @@
+---
+
+nginx:
+  main_dir: /etc/nginx

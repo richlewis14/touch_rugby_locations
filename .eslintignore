@@ -1,0 +1,10 @@
+*.json
+*.env
+*.md
+Procfile
+*.log
+Vagrantfile
+deployment/*
+dump.rdb
+public/*
+Jakefile.js

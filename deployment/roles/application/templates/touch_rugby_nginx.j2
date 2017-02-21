@@ -1,0 +1,13 @@
+server {
+  listen 80 default_server;
+  server_name localhost;
+
+  location / {
+    passenger_enabled on;
+    root {{ app.main_dir }}/public;
+
+    # Tell Passenger that your app is a Node.js app
+    passenger_app_type node;
+    passenger_startup_file server.js;
+  }
+}

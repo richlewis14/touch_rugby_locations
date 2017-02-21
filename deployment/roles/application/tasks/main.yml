@@ -1,0 +1,58 @@
+---
+# Site install
+- name: create node app folder
+  file: path={{app.main_dir}} state=directory
+  tags: copy_app
+
+# Copy site folder across
+- name: copy all helpers across to server
+  copy: src=../../helpers dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all db files across to server
+  copy: src=../../db dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all public files across to server
+  copy: src=../../public dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all route files across to server
+  copy: src=../../routes dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all seed files across to server
+  copy: src=../../seeds dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all test files across to server
+  copy: src=../../test dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy all view files across to server
+  copy: src=../../views dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  tags: copy_app
+
+- name: copy single files across to server
+  copy: src=../../{{ item }} dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  with_items:
+    - .env
+    - jakefile.js 
+    - package.json
+    - README.md
+    - server.js
+    - seed.json
+  tags: copy_app
+
+- name: update the app nginx config
+  template: src=touch_rugby_nginx.j2 dest={{nginx.main_dir}}/sites-enabled/default
+  notify:
+    - Restart nginx
+  tags: copy_app
+
+- name: install node package modules
+  command: npm install
+  args: 
+    chdir: "{{app.main_dir}}"
+  notify: Restart nginx
+  tags: copy_app

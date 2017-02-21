@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Touch Rugby Locations</title>
+    <meta name="description" content="Find a Touch Rugby club near you">
+    <meta name="keywords" content="Touch Rugby, Touch, Rugby, Touch Rugby near me">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBOHhw1I9AoOiHOoC6Y3jaS4GMZcmiek98"></script>
+    <!-- Internal JS Libraries -->
+    <script type="text/javascript" src="/js/snazzy-info-window.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/snazzy-info-window.css" />
+    <!-- Template for Snazzy Window -->
+    <script id="marker-content-template" type="text/x-handlebars-template">
+        <div class="custom-img" style="background-image: url({{{bgImg}}})"></div>
+        <section class="custom-content">
+            <h1 class="custom-header">
+                {{title}}
+                <small>{{subtitle}}</small>
+            </h1>
+            <div class="custom-body">{{{body}}}</div>
+        </section>
+    </script>
+  </head>
+  <body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="map-canvas"></div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-91788126-1', 'auto');
+     ga('send', 'pageview');
+    </script>
+  </body>
+  <script>
+    var clubs = <%- JSON.stringify(clubs) %>;
+    $(function() {
+
+    function createIcon(color) {
+      return {
+        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+        fillColor: color,
+        fillOpacity: 0.95,
+        scale: 2,
+        strokeColor: '#fff',
+        strokeWeight: 3,
+        anchor: new google.maps.Point(12, 24)
+      };
+    }
+
+    // Create the map
+    var map = new google.maps.Map($('.map-canvas')[0], {
+        zoom: 5,
+        //styles: mapStyle,
+        center: new google.maps.LatLng(52.4016798, -5.2837261)
+    });
+
+    var template = Handlebars.compile($('#marker-content-template').html());
+    $.each(clubs, function(i, e) {
+
+      var info = null;
+      var closeDelayed = false;
+      var closeDelayHandler = function() {
+      $(info.getWrapper()).removeClass('active');
+        setTimeout(function() {
+            closeDelayed = true;
+            info.close();
+        }, 300);
+      };
+
+      var club = new google.maps.Marker({
+        map: map,
+        icon: createIcon(e.iconColor),
+        position: new google.maps.LatLng(e.latitude, e.longtitude),
+        title: e.clubName
+      });
+
+      var info = new SnazzyInfoWindow($.extend({},{
+        marker: club,
+        wrapperClass: 'custom-window',
+        offset: {
+            top: '-72px'
+        },
+        edgeOffset: {
+            top: 50,
+            right: 60,
+            bottom: 50
+        },
+        border: false,
+        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
+        content: template({
+            title: e.clubName,
+            bgImg: e.imageBanner,
+            body: e.bio
+        }),
+        callbacks: {
+            open: function() {
+                $(this.getWrapper()).addClass('open');
+            },
+            afterOpen: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.addClass('active');
+                wrapper.find('.custom-close').on('click', closeDelayHandler);
+            },
+            beforeClose: function() {
+                if (!closeDelayed) {
+                    closeDelayHandler();
+                    return false;
+                }
+                return true;
+            },
+            afterClose: function() {
+                var wrapper = $(this.getWrapper());
+                wrapper.find('.custom-close').off();
+                wrapper.removeClass('open');
+                closeDelayed = false;
+            }
+        }
+    }));
+  });
+
+});
+</script>
+</html>

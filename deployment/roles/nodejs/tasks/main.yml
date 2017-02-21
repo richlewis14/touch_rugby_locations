@@ -1,0 +1,31 @@
+---
+# defaults file for nodejs
+
+- name: Add Nodesource apt key.
+  apt_key:
+    url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+    state: present
+  tags:
+    - nodejs
+
+- name: Add NodeSource repositories for Node.js.
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://deb.nodesource.com/node_4.x  {{ ansible_distribution_release }} main"
+    - "deb-src https://deb.nodesource.com/node_4.x {{ ansible_distribution_release }} main"
+  tags:
+    - nodejs
+    - node_repo
+
+- name: install nodejs
+  apt: name=nodejs state=latest update_cache=yes
+  tags:
+    - nodejs
+
+- name: Make a link for node to nodejs
+  file: src=/usr/bin/nodejs dest=/usr/sbin/node state=link
+  tags:
+    - nodejs
+

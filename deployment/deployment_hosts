@@ -1,0 +1,13 @@
+[development_touch_rugby_app]
+33.32.1.2 ansible_ssh_private_key_file=../.vagrant/machines/touch_rugby/virtualbox/private_key
+
+[development_touch_rugby_app:vars]
+user=vagrant
+is_local=true
+
+[staging_touch_rugby_app]
+ec2-34-251-15-86.eu-west-1.compute.amazonaws.com ansible_ssh_private_key_file=~/.ssh/touch-rugby-locations-staging.pem 
+
+[staging_touch_rugby_app:vars]
+user=ubuntu
+

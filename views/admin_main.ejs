@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">Touch Rugby Admin</a>
+        <ul id="nav-mobile" class="right">
+          <% if (user) { %>
+            <li><a href="/admin/main">Add Club</a></li>
+            <li><a href="/admin/clubs">View Clubs</a></li>
+            <li><a href="/admin/sign_out">Log out</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+        <form class="form-horizontal" action="/admin/addClub" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <legend>Add a Club</legend>
+          <div class="form-group">
+            <label for="inputClubname" class="col-lg-2 control-label">Club Name: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputClubname" placeholder="club name"  name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLat" class="col-lg-2 control-label">Latitude: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputLat" placeholder="Latitude"  name="latitude">
+            </div>
+          </div>
+           <div class="form-group">
+            <label for="inputLong" class="col-lg-2 control-label">Longtitude: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputLong" placeholder="Longtitude"  name="longtitude">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputLong" class="col-lg-2 control-label">Icon Color: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputIconColot" placeholder="Icon Color"  name="iconColor">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputBio" class="col-lg-2 control-label">bio: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="inputBio" placeholder="<p>some details</p>"  name="bio">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageBanner" class="col-lg-2 control-label">Image: </label>
+            <div class="col-lg-10">
+              <input type="file" class="form-control" id="imageBanner" placeholder="Choose Image"  name="imageBanner">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="waves-effect waves-light btn-large">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>
