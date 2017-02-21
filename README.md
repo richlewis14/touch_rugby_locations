@@ -22,3 +22,13 @@
 ##Testing
   - `npm test`
   - `npm run lint`
+
+##Deployment
+
+Using Ansible: `pip install ansible` or `brew install ansible`
+
+###Vagrant deployment
+
+  - `vagrant up`
+  - `cd deployment/`
+  - `ansible-playbook site.yml -u vagrant --limit development_touch_rugby_app`

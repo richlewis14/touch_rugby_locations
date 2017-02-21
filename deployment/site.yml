@@ -1,0 +1,24 @@
+---
+# Touch rugby playbook
+
+- hosts: development_touch_rugby_app
+  roles:
+    - common
+    - nginx
+    - python
+    - nodejs
+    - nginx-passenger
+    - mongodb
+  remote_user: vagrant
+  become: yes
+
+- hosts: staging_touch_rugby_app
+  roles:
+    - common
+    - nginx
+    - python
+    - nodejs
+    - nginx-passenger
+    - mongodb
+  remote_user: ubuntu
+  become: yes

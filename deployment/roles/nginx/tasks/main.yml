@@ -1,0 +1,17 @@
+---
+# defaults file for nginx install
+- name: install nginx
+  apt: name=nginx state=present update_cache=yes
+  tags: nginx
+
+# Auto enable nginx
+- name: nginx auto start on boot
+  service: name=nginx enabled=yes
+  tags: nginx
+
+# Update main config for site
+- name: update the main nginx config
+  template: src=nginx_main_conf.j2 dest={{nginx.main_dir}}/nginx.conf
+  notify:
+    - Restart nginx
+  tags: nginx
