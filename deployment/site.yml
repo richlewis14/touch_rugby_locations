@@ -9,6 +9,7 @@
     - nodejs
     - nginx-passenger
     - mongodb
+    - application
   remote_user: vagrant
   become: yes
 
@@ -20,5 +21,6 @@
     - nodejs
     - nginx-passenger
     - mongodb
+    - application
   remote_user: ubuntu
   become: yes
