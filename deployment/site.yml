@@ -1,6 +1,5 @@
 ---
 # Touch rugby playbook
-
 - hosts: development_touch_rugby_app
   roles:
     - common
@@ -24,3 +23,9 @@
     - application
   remote_user: ubuntu
   become: yes
+  gather_facts: false
+  pre_tasks:
+    - raw: apt-get install python-minimal aptitude -y
+    # action: setup will gather facts after python2 has been installed
+    - action: setup
+
