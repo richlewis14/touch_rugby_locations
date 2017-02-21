@@ -1,0 +1,28 @@
+---
+
+# Install PGP key and add HTTPS support for APT
+- name: Install the libcurl GnuTLS development files that Passenger requires
+  apt: name=libcurl4-gnutls-dev state=present
+
+  # Add an apt key by id from a keyserver
+- name: Add PGP key
+  apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=561F9B9CAC40B2F7
+
+- name: Install HTTPS support
+  apt: name=apt-transport-https state=present
+
+- name: Install CA certs
+  apt: name=ca-certificates state=present
+
+- name: update apt repo
+  apt_repository: repo='deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main' state=present
+
+- name: Install nginx-extras and passenger
+  apt: pkg={{ item }} update_cache=yes
+  with_items:
+    - nginx-extras
+    - passenger
+
+- name: Update config of nginx-extras
+  template: src=nginx_config.j2 dest={{nginx.main_dir}}/nginx.conf
+  notify: Restart Nginx
