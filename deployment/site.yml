@@ -29,3 +29,20 @@
     # action: setup will gather facts after python2 has been installed
     - action: setup
 
+- hosts: production_touch_rugby_app
+  roles:
+    - common
+    - nginx
+    - python
+    - nodejs
+    - nginx-passenger
+    - mongodb
+    - application
+  remote_user: ubuntu
+  become: yes
+  gather_facts: false
+  pre_tasks:
+    - raw: apt-get install python-minimal aptitude -y
+    # action: setup will gather facts after python2 has been installed
+    - action: setup
+
