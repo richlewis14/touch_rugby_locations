@@ -6,35 +6,35 @@
 
 # Copy site folder across
 - name: copy all helpers across to server
-  copy: src=../../helpers dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../helpers dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all db files across to server
-  copy: src=../../db dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../db dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all public files across to server
-  copy: src=../../public dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../public dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all route files across to server
-  copy: src=../../routes dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../routes dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all seed files across to server
-  copy: src=../../seeds dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=.../../../../seeds dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all test files across to server
-  copy: src=../../test dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../test dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all view files across to server
-  copy: src=../../views dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../views dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy single files across to server
-  copy: src=../../{{ item }} dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../{{ item }} dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   with_items:
     - .env
     - jakefile.js 
