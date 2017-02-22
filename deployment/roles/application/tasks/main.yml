@@ -22,7 +22,7 @@
   tags: copy_app
 
 - name: copy all seed files across to server
-  copy: src=.../../../../seeds dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
+  copy: src=../../../../seeds dest={{app.main_dir}} owner={{user}} group={{user}} mode=755
   tags: copy_app
 
 - name: copy all test files across to server
