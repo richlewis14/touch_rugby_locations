@@ -36,3 +36,7 @@ Using Ansible: `pip install ansible` or `brew install ansible`
 ###Staging deployment
 
   - `ansible-playbook site.yml -u vagrant --limit staging_touch_rugby_app`
+
+##Production deployment
+
+  - `ansible-playbook site.yml -u vagrant --limit production_touch_rugby_app`
