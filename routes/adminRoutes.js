@@ -111,7 +111,7 @@ router.get('/editClub/:id', (req, res) => {
     return;
   }
 
-  RugbyClub.find(req.params.id, (err, result) => {
+  RugbyClub.find({'_id': req.params.id}, (err, result) => {
     if (err) {
       console.log('Error obtaining club record');
       res.render('admin_edit', { user: req.user, club: [] });
