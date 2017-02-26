@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
+<html lang="en">
+<head>
+	<meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Touch Rugby Locations</title>
-    <meta name="description" content="Find a Touch Rugby club near you">
-    <meta name="keywords" content="Touch Rugby, Touch, Rugby, Touch Rugby near me">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Richard Lewis">
+	<meta name="description" content="Touch Rugby or Touch as it is commonly referred to is a sport that is playable by all. No matter your fitness level, experience or age use this site to find a Touch Rugby club near you, whether you want to play socially or competitively.">
+    <meta name="keywords" content="Touch Rugby, Touch, Rugby, Touch Rugby near me, Play Touch Rugby">
+	
+	<title>Play Touch Rugby</title>
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png">
@@ -25,134 +26,85 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+	
+	<!-- Bootstrap itself -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="/css/style.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBOHhw1I9AoOiHOoC6Y3jaS4GMZcmiek98"></script>
-    <!-- Internal JS Libraries -->
-    <script type="text/javascript" src="/js/snazzy-info-window.js"></script>
+	<!-- Fonts -->
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+</head>
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/css/snazzy-info-window.css" />
-    <!-- Template for Snazzy Window -->
-    <script id="marker-content-template" type="text/x-handlebars-template">
-        <div class="custom-img" style="background-image: url({{{bgImg}}})"></div>
-        <section class="custom-content">
-            <h1 class="custom-header">
-                {{title}}
-                <small>{{subtitle}}</small>
-            </h1>
-            <div class="custom-body">{{{body}}}</div>
-        </section>
-    </script>
-  </head>
-  <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="map-canvas"></div>
+<!-- use "theme-invert" class on bright backgrounds, also try "text-shadows" class -->
+<body class="theme-invert">
 
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<nav class="mainmenu">
+	<div class="container">
+		<div class="dropdown">
+			<button type="button" class="navbar-toggle" data-toggle="dropdown"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+			<!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
+			<ul class="dropdown-menu background-greyscale" role="menu" aria-labelledby="dLabel">
+				<li><a href="#head" class="active">Home</a></li>
+				<li><a href="#about">About Touch</a></li>
+				<li><a href="/touchmap">Touch Map</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
-     ga('create', 'UA-91788126-1', 'auto');
-     ga('send', 'pageview');
-    </script>
-  </body>
-  <script>
-    var clubs = <%- JSON.stringify(clubs) %>;
-    $(function() {
 
-    function createIcon(color) {
-      return {
-        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-        fillColor: color,
-        fillOpacity: 0.95,
-        scale: 2,
-        strokeColor: '#fff',
-        strokeWeight: 3,
-        anchor: new google.maps.Point(12, 24)
-      };
-    }
+<!-- Main (Home) section -->
+<section class="section" id="head">
+	<div class="container">
 
-    // Create the map
-    var map = new google.maps.Map($('.map-canvas')[0], {
-        zoom: 5,
-        //styles: mapStyle,
-        center: new google.maps.LatLng(52.4016798, -5.2837261)
-    });
+		<div class="row">
+			<div class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center background-greyscale">	
 
-    var template = Handlebars.compile($('#marker-content-template').html());
-    $.each(clubs, function(i, e) {
+				<!-- Site Title, your name, HELLO msg, etc. -->
+				<h1 class="title">Touch Rugby</h1>
+				<h2 class="subtitle">A sport for everyone</h2>
 
-      var info = null;
-      var closeDelayed = false;
-      var closeDelayHandler = function() {
-      $(info.getWrapper()).removeClass('active');
-        setTimeout(function() {
-            closeDelayed = true;
-            info.close();
-        }, 300);
-      };
+				<!-- Short introductory (optional) -->
+				<h3 class="tagline">
+					Improve your fitness, have fun<br>
+					but most of all...make new friends
+				</h3>
+				
+				<!-- Nice place to describe your site in a sentence or two -->
+				<p><a href="/touchmap" class="btn btn-default btn-lg bold">Find A Team Near You</a></p>
+	
+			</div> <!-- /col -->
+		</div> <!-- /row -->
+	
+	</div>
+</section>
 
-      var club = new google.maps.Marker({
-        map: map,
-        icon: createIcon(e.iconColor),
-        position: new google.maps.LatLng(e.latitude, e.longtitude),
-        title: e.clubName
-      });
+<!-- Second (About) section -->
+<section class="section" id="about">
+	<div class="container background-greyscale">
+	
+		<h2 class="text-center title">About Touch Rugby</h2>
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-2">    
+				<h5><strong>What is Touch Rugby?<br></strong></h5>
+				<p>Touch rugby (also known as “touch”) is a minimal contact sport that is played worldwide by men, women and children of all ages. The game emphasizes running, agility and ball handling skills such as passing and catching.</p>    
+			</div>
+			<div class="col-sm-4">
+				<h5><strong>Who can play?<br></strong></h5>    
+				<p>Due to the minimal contact aspect, Touch Rugby is much more mixed in gender. Rugby players are usually guys, but in Touch Rugby it’s completely mixed. Girls and guys will play in the same team, guys can play against girls. Both sexes can play with and against each other, and it’s really common for that to happen too.</p>    
+			</div>
+		</div>
+	</div>
+</section>
 
-      var info = new SnazzyInfoWindow($.extend({},{
-        marker: club,
-        wrapperClass: 'custom-window',
-        offset: {
-            top: '-72px'
-        },
-        edgeOffset: {
-            top: 50,
-            right: 60,
-            bottom: 50
-        },
-        border: false,
-        closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
-        content: template({
-            title: e.clubName,
-            bgImg: e.imageBanner,
-            body: e.bio
-        }),
-        callbacks: {
-            open: function() {
-                $(this.getWrapper()).addClass('open');
-            },
-            afterOpen: function() {
-                var wrapper = $(this.getWrapper());
-                wrapper.addClass('active');
-                wrapper.find('.custom-close').on('click', closeDelayHandler);
-            },
-            beforeClose: function() {
-                if (!closeDelayed) {
-                    closeDelayHandler();
-                    return false;
-                }
-                return true;
-            },
-            afterClose: function() {
-                var wrapper = $(this.getWrapper());
-                wrapper.find('.custom-close').off();
-                wrapper.removeClass('open');
-                closeDelayed = false;
-            }
-        }
-    }));
-  });
-
-});
-</script>
+<!-- Load js libs only when the page is loaded. -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="/js/modernizr.js"></script>
+<!-- Custom template scripts -->
+<script src="/js/custom.js"></script>
+</body>
 </html>

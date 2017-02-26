@@ -48,13 +48,17 @@ app.use(fileUpload());
 app.use('/admin', adminRoutes);
 
 app.get('/', function(req, res) {
+  res.render('index');
+});
+
+app.get('/touchmap', function(req, res) {
   RugbyClub.find({}, (err, results) => {
     if (err) {
       console.log('Error obtaining club records');
-      res.render('index', { clubs: [] });
+      res.render('touchmap', { clubs: [] });
       return;
     }
-    res.render('index', { clubs: results });
+    res.render('touchmap', { clubs: results });
   });
 });
 
