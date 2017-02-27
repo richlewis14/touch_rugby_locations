@@ -75,6 +75,7 @@
 				
 				<!-- Nice place to describe your site in a sentence or two -->
 				<p><a href="/touchmap" class="btn btn-default btn-lg bold">Find A Team Near You</a></p>
+				<h2 class="subtitle"><%= count %> Touch Clubs registered so far.</h2>
 	
 			</div> <!-- /col -->
 		</div> <!-- /row -->
@@ -110,6 +111,7 @@
 	</div>
 </section>
 
+<script>var count = <%- JSON.stringify(count) %>;</script>
 <!-- Load js libs only when the page is loaded. -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
