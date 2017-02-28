@@ -51,12 +51,14 @@ router.post('/addClub', (req, res) => {
   const latitude = req.body.latitude;
   const longtitude = req.body.longtitude;
   const iconColor = req.body.iconColor;
+  const governance = req.body.governance;
   const newClub = new RugbyClub();
   newClub.clubName = club;
   newClub.bio = bio;
   newClub.latitude = latitude;
   newClub.longtitude = longtitude;
   newClub.iconColor = iconColor;
+  newClub.governance = governance
   s3Helper.uploadToS3(req.files).then((data) => {
     const publicUrl = `https://s3-eu-west-1.amazonaws.com/${process.env.AWS_BUCKET}/${data.Key}`;
     const imageBanner = publicUrl;
@@ -133,10 +135,11 @@ router.post('/editClub/:id', (req, res) => {
     { _id: req.params.id },
     // Update fields
     { clubName: req.body.name,
+      governance: req.body.governance,
       latitude: req.body.latitude,
       longtitude: req.body.longtitude,
       bio: req.body.bio,
-      iconColor: req.body.iconColor,
+      iconColor: req.body.iconColor
     }).exec(function(err) {
       if (err) {
         console.log('Something went wrong', err);

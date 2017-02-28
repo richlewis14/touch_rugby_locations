@@ -43,7 +43,7 @@
         <section class="custom-content">
             <h1 class="custom-header">
                 {{title}}
-                <small>{{subtitle}}</small>
+                <small>{{governance}}</small>
             </h1>
             <div class="custom-body">{{{body}}}</div>
         </section>
@@ -123,6 +123,7 @@
         closeButtonMarkup: '<button type="button" class="custom-close">&#215;</button>',
         content: template({
             title: e.clubName,
+            governance: e.governance,
             bgImg: e.imageBanner,
             body: e.bio
         }),
