@@ -1,3 +1,15 @@
+i.fa-question-circle:before {
+  padding-left: 15px;
+}
+
+a#changeInfo:hover {
+  cursor: pointer;
+}
+
+.modal-title {
+  text-align: center;
+}
+
 .si-float-wrapper {
   position: absolute;
   width: 100%; }
@@ -279,6 +291,7 @@ body {
   z-index: 1; }
 
 .custom-header {
+  font-size: 1.5em;
   position: relative;
   margin: 0;
   padding: 30px;
@@ -289,7 +302,8 @@ body {
     display: block;
     font-size: 0.55em;
     font-weight: 400;
-    opacity: 0.75; }
+    opacity: 0.75;
+    color: #FFFFFF; }
 
 .custom-body {
   padding: 30px;

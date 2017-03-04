@@ -51,6 +51,10 @@ ul.benefits {
   padding-left: 15px;
 }
 
+/********* ALERTS *************/
+.alert {
+  text-align: center;
+}
 
 /********************************************************/
 /*                    Navigation bar                    */
