@@ -66,7 +66,6 @@ app.use('/admin', adminRoutes);
 app.use('/changeInfo', mailerRoutes);
 
 app.get('/', function(req, res) {
-  console.log(res.locals);
   RugbyClub.count({}, (err, count) => {
     if (err) {
       res.render('index', { count: [] });
