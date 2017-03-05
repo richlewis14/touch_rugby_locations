@@ -10,8 +10,8 @@ function sendChangeInfo(req, res) {
   var touchClubName = req.body.touchClubName;
   var message = req.body.message;
     var mailOptions = {
-      from: 'richlewis14@gmail.com', // sender address
-      to: 'richlewis14@gmail.com', // list of receivers
+      from: process.env.EMAIL_ADDRESS, // sender address
+      to: process.env.EMAIL_ADDRESS, // list of receivers
       subject: 'Change Info request from Touch Rugby Locations website', // Subject line
       html: name + '<br>' + email + '<br>' + touchClubName + '<br>' + message // Body
 };
@@ -26,9 +26,9 @@ function sendChangeInfo(req, res) {
 
     transporter.sendMail(mailOptions, function(error, info){
       if(error){
-        req.flash('msg', 'There seems to have been a problem, please try again');
+        req.flash('error', 'There seems to have been a problem in sending your message, please try again');
       }else{
-        req.flash('msg', 'I will get back you as soon as I can');
+        req.flash('success', 'Thank you for your message, I will get back you as soon as I can');
       };
       res.redirect('/');
     });

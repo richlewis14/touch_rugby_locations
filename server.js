@@ -40,7 +40,8 @@ app.use(session({
 }));
 app.use(flash());
 app.use(function(req, res, next) {
-  res.locals.messages = req.flash();
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
   next();
 });
 
@@ -65,6 +66,7 @@ app.use('/admin', adminRoutes);
 app.use('/changeInfo', mailerRoutes);
 
 app.get('/', function(req, res) {
+  console.log(res.locals);
   RugbyClub.count({}, (err, count) => {
     if (err) {
       res.render('index', { count: [] });
