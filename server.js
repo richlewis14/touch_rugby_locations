@@ -33,7 +33,7 @@ const app = express();
 // Grab sessions
 app.use(cookieParser('secret'));
 app.use(session({ 
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)) },
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true 
