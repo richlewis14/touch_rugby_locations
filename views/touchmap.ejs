@@ -26,23 +26,32 @@
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/snazzy-info-window.css" />
+
+    <!-- jQuery, bootstrap ad handlebar JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBOHhw1I9AoOiHOoC6Y3jaS4GMZcmiek98"></script>
     <!-- Internal JS Libraries -->
     <script type="text/javascript" src="/js/snazzy-info-window.js"></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/snazzy-info-window.css" />
     <!-- Template for Snazzy Window -->
     <script id="marker-content-template" type="text/x-handlebars-template">
         <div class="custom-img" style="background-image: url({{{bgImg}}})"></div>
         <section class="custom-content">
             <h1 class="custom-header">
-                {{title}}
+                {{title}} <i class="fa fa-question-circle" data-placement="bottom" data-toggle="popover" data-container="body" data-content="Something not right? If this is your club and have spotted some information that needs changing then please <a id='changeInfo' data-toggle='modal' data-target='#contactFormModal'>Contact me</a>"></i>
                 <small>{{governance}}</small>
             </h1>
             <div class="custom-body">{{{body}}}</div>
@@ -50,6 +59,59 @@
     </script>
   </head>
   <body>
+
+  <!-- Modal Template -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="contactFormModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Request to change information</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Change Info mailer -->
+        <form class="form-horizontal" action="/changeInfo" method="post">
+        <fieldset>
+          <!-- Contact Name -->
+          <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Name: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="name" placeholder="Your Name"  name="name">
+            </div>
+          </div>
+          <!-- Contact Email -->
+          <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Email: </label>
+            <div class="col-lg-10">
+              <input class="form-control" type="email" id="email" placeholder="Your Email Address"  name="email">
+            </div>
+          </div>
+          <!-- Club Name -->
+          <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Club: </label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" id="touchClubName" placeholder="Touch Club Name"  name="touchClubName">
+            </div>
+          </div>
+          <!-- Information -->
+          <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Message: </label>
+            <div class="col-lg-10">
+              <textarea class="form-control" id="message" placeholder="Message"  name="message"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -67,6 +129,24 @@
   </body>
   <script>
     var clubs = <%- JSON.stringify(clubs) %>;
+    var currentWrapper = null;
+    // Ability to destroy popover multiple times
+    $(document).delegate('#changeInfo', 'click', function(){
+      $('.popover').popover('destroy');
+    });
+
+    $('#contactFormModal').on('show.bs.modal', function (e) {
+       //clone the element, select all the children
+       //remove all the children and go back to selected element
+       var club = currentWrapper.find('.custom-header').clone().children().remove().end().text().trim();
+       $('#touchClubName').val(club);
+    });
+
+    // reinitialize popover when modal closes
+    $('#contactFormModal').on('hidden.bs.modal', function (e) {
+      $('[data-toggle="popover"]').popover({ html: true } );
+    });
+
     $(function() {
 
     function createIcon(color) {
@@ -89,6 +169,7 @@
     });
 
     var template = Handlebars.compile($('#marker-content-template').html());
+
     $.each(clubs, function(i, e) {
 
       var info = null;
@@ -130,11 +211,15 @@
         callbacks: {
             open: function() {
                 $(this.getWrapper()).addClass('open');
+                // Need to initialize popover first
+                $('[data-toggle="popover"]').popover({ html: true });
             },
             afterOpen: function() {
                 var wrapper = $(this.getWrapper());
                 wrapper.addClass('active');
                 wrapper.find('.custom-close').on('click', closeDelayHandler);
+                // Set current wrapper so contact form club name can be pre populated
+                currentWrapper = wrapper;
             },
             beforeClose: function() {
                 if (!closeDelayed) {
@@ -147,6 +232,7 @@
                 var wrapper = $(this.getWrapper());
                 wrapper.find('.custom-close').off();
                 wrapper.removeClass('open');
+                $('.popover').popover('destroy');
                 closeDelayed = false;
             }
         }
