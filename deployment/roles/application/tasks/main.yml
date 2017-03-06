@@ -42,6 +42,7 @@
     - README.md
     - server.js
     - seed.json
+    - sitemap.xml
   tags: copy_app
 
 - name: update the app nginx config
