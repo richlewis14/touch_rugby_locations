@@ -1,5 +1,4 @@
 const express = require('express');
-const sitemap = require('express-sitemap');
 const fileUpload = require('express-fileupload');
 const fs = require('fs');
 require('dotenv').config();
@@ -62,26 +61,6 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 
 app.use(fileUpload());
-
-// Generate Sitemap
-sitemap({
-    map: {
-        '/': ['get'],
-        '/touchmap': ['get']
-    },
-    route: {
-        '/': {
-            lastmod: '2014-06-20',
-            changefreq: 'always',
-            priority: 1.0,
-        },
-        '/touchmap': {
-            lastmod: '2014-06-20',
-            changefreq: 'always',
-            priority: 1.0,
-        },
-    },
-}).XMLtoFile();
 
 // Register routes
 app.use('/admin', adminRoutes);
