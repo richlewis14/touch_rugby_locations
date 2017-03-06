@@ -1,5 +1,7 @@
 const express = require('express');
+const sitemap = require('express-sitemap');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -61,6 +63,26 @@ app.set('view engine', 'ejs');
 
 app.use(fileUpload());
 
+// Generate Sitemap
+sitemap({
+    map: {
+        '/': ['get'],
+        '/touchmap': ['get']
+    },
+    route: {
+        '/': {
+            lastmod: '2014-06-20',
+            changefreq: 'always',
+            priority: 1.0,
+        },
+        '/touchmap': {
+            lastmod: '2014-06-20',
+            changefreq: 'always',
+            priority: 1.0,
+        },
+    },
+}).XMLtoFile();
+
 // Register routes
 app.use('/admin', adminRoutes);
 app.use('/changeInfo', mailerRoutes);
@@ -84,6 +106,11 @@ app.get('/touchmap', function(req, res) {
     }
     res.render('touchmap', { clubs: results });
   });
+});
+
+app.get('/sitemap.xml', function(req, res) {
+  res.set('Content-Type', 'application/xml');
+  res.send(fs.readFileSync('sitemap.xml', {encoding: 'utf-8'}))
 });
 
 app.listen(PORT);
