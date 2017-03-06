@@ -129,6 +129,7 @@
   </body>
   <script>
     var clubs = <%- JSON.stringify(clubs) %>;
+    var currentWrapper = null;
     // Ability to destroy popover multiple times
     $(document).delegate('#changeInfo', 'click', function(){
       $('.popover').popover('destroy');
@@ -137,8 +138,8 @@
     $('#contactFormModal').on('show.bs.modal', function (e) {
        //clone the element, select all the children
        //remove all the children and go back to selected element
-      var club = $('.custom-header').clone().children().remove().end().text().trim();
-      $('#touchClubName').val(club);
+       var club = currentWrapper.find('.custom-header').clone().children().remove().end().text().trim();
+       $('#touchClubName').val(club);
     });
 
     // reinitialize popover when modal closes
@@ -168,7 +169,7 @@
     });
 
     var template = Handlebars.compile($('#marker-content-template').html());
-    
+
     $.each(clubs, function(i, e) {
 
       var info = null;
@@ -217,6 +218,8 @@
                 var wrapper = $(this.getWrapper());
                 wrapper.addClass('active');
                 wrapper.find('.custom-close').on('click', closeDelayHandler);
+                // Set current wrapper so contact form club name can be pre populated
+                currentWrapper = wrapper;
             },
             beforeClose: function() {
                 if (!closeDelayed) {
