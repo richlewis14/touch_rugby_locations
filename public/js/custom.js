@@ -6,7 +6,7 @@ var section_hide_time = 800;
 var section_show_time = 800;
 
 // jQuery stuff
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
 
 	// Switch section
 	$("a", '.mainmenu').click(function() 
