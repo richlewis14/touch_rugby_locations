@@ -41,23 +41,6 @@ http {
   error_log /var/log/nginx/error.log;
 
   ##
-  # Gzip Settings
-  ##
-
-  gzip on;
-  gzip_disable "msie6";
-
-  gzip_vary on;
-  gzip_proxied any;
-  gzip_comp_level 2;
-  gzip_buffers 4 8k;
-  gzip_http_version 1.0;
-  gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
-
-  gzip_static on;
-  gzip_proxied expired no-cache no-store private auth;
-
-  ##
   # Phusion Passenger config
   ##
   # Uncomment it if you installed passenger or passenger-enterprise
@@ -73,4 +56,30 @@ http {
 
   include /etc/nginx/conf.d/*.conf;
   include /etc/nginx/sites-enabled/*;
+
+  ##
+  # Gzip Settings
+  ##
+
+  gzip on;
+  gzip_disable "msie6";
+
+  gzip_vary on;
+  gzip_proxied any;
+  gzip_comp_level 2;
+  gzip_buffers 4 8k;
+  gzip_http_version 1.0;
+  gzip_types
+    text/plain
+    text/css
+    application/json
+    application/x-javascript
+    application/javascript
+    text/xml
+    application/xml
+    application/xml+rss
+    text/javascript;
+
+  gzip_static on;
+  gzip_proxied expired no-cache no-store private auth;
 }
