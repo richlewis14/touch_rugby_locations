@@ -50,6 +50,7 @@ http {
     text/css
     application/json
     application/x-javascript
+    application/javascript
     text/xml
     application/xml
     application/xml+rss
@@ -82,21 +83,3 @@ http {
   include /etc/nginx/conf.d/*.conf;
   include /etc/nginx/sites-enabled/*;
 }
-
-server {
-  # Static assets
-  location ~* ^.+\.(manifest|appcache)$ {
-    expires -1;
-    root  {{ app.main_dir }}/touch_rugby/public;
-    access_log logs/static.log;
-  }
-
-   # Set expires max on static file types
-   location ~* ^.+\.(css|js|jpg|jpeg|gif|png|ico|gz|svg|svgz|ttf|otf|woff|eot|mp4|ogg|ogv|webm)$ {
-     expires max;
-     root  {{ app.main_dir }}/touch_rugby/public;
-     access_log off;
-   }
-}
-
-
