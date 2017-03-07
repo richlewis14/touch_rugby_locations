@@ -157,16 +157,7 @@
 </footer>
 
 <script>var count = <%- JSON.stringify(count) %>;</script>
-<!-- Load CSS -->
-<script type="text/javascript">
-/* First CSS File */
-var css = document.createElement('link');
-css.rel = 'stylesheet';
-css.href = '/css/home_page.min.css';
-css.type = 'text/css';
-var godefer = document.getElementsByTagName('link')[0];
-godefer.parentNode.insertBefore(css, godefer);
-</script>
+
 <!-- Load js libs only when the page is loaded. -->
 <script type="text/javascript">
   function requireJSOnload() {
