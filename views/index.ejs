@@ -157,6 +157,16 @@
 </footer>
 
 <script>var count = <%- JSON.stringify(count) %>;</script>
+<!-- Load CSS -->
+<script type="text/javascript">
+/* First CSS File */
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = '/css/home_page.min.css';
+css.type = 'text/css';
+var godefer = document.getElementsByTagName('link')[0];
+godefer.parentNode.insertBefore(css, godefer);
+</script>
 <!-- Load js libs only when the page is loaded. -->
 <script type="text/javascript">
   function requireJSOnload() {
@@ -170,28 +180,6 @@
   else if (window.attachEvent)
     window.attachEvent("onload", requireJSOnload);
   else window.onload = requireJSOnload;
-</script>
-<!-- Load CSS once page loaded -->
-<script>
-  function loadCSS(href){
-    var ss = window.document.createElement('link'),
-    ref = window.document.getElementsByTagName('head')[0];
-
-    ss.rel = 'stylesheet';
-    ss.href = href;
-
-    // temporarily, set media to something non-matching to ensure it'll
-    // fetch without blocking render
-    ss.media = 'only x';
-
-    ref.parentNode.insertBefore(ss, ref);
-
-    setTimeout( function(){
-      // set media back to `all` so that the stylesheet applies once it loads
-      ss.media = 'all';
-     },0);
-   }
-   loadCSS('/css/home_page.min.css');
 </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
