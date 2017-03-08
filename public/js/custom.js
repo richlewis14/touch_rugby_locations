@@ -7,6 +7,9 @@ var section_show_time = 800;
 
 // jQuery stuff
 $(document).ready(function($) {
+	
+  // FOUC
+  $('.no-fouc').removeClass('no-fouc');
 
 	// Switch section
 	$("a", '.mainmenu').click(function() 
