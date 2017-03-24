@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const adminUser = require('./db/adminUser');
@@ -32,7 +31,7 @@ mongoose.connect(mongodb, { config: { autoIndex: false } }, function(err) {
 const app = express();
 // setup cookies and sessions for maintaining login state and flash messages.
 // Grab sessions
-app.use(cookieParser('secret'));
+
 app.use(session({ 
     cookie: { maxAge: new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)) },
     secret: process.env.SESSION_SECRET,
